@@ -1,0 +1,26 @@
+<form [formGroup]="addPostFormGroup">
+  <mat-form-field>
+    <mat-label>Ski Resort</mat-label>
+    <input [formControl]="destination">
+  </mat-form-field>>
+
+  <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date">
+      <input matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Message</mat-label>
+    <input [formControl]="message">
+  </mat-form-field>
+
+  <mat-button>
+    Create Ski Trip
+  </mat-button>
+</form>

@@ -24,15 +24,21 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ProfileComponent } from './profile/profile.component';
+import { AddPostComponent } from './add-post/add-post.component';
 // Mat Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideNativeDateAdapter } from '@angular/material/core';
+// import { provideNativeDateAdapter } from '@angular/material/core';
 
 const MAT_MODULES = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatDatepickerModule,
 ];
 
 @NgModule({
@@ -48,10 +54,13 @@ const MAT_MODULES = [
     AdminComponent,
     NotFoundComponent,
     ProfileComponent,
+    AddPostComponent,
   ],
   imports: [
     ... MAT_MODULES,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     SharedModule,
     JwtModule.forRoot({
       config: {
@@ -68,6 +77,7 @@ const MAT_MODULES = [
     UserService,
     PostService,
     provideAnimationsAsync(),
+    provideNativeDateAdapter(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
