@@ -1,46 +1,50 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { UserService } from '../services/user.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-
   registerForm: UntypedFormGroup;
   username = new UntypedFormControl('', [
     Validators.required,
     Validators.minLength(2),
     Validators.maxLength(30),
-    Validators.pattern('[a-zA-Z0-9_-\\s]*')
+    Validators.pattern('[a-zA-Z0-9_-\\s]*'),
   ]);
   email = new UntypedFormControl('', [
     Validators.email,
     Validators.required,
     Validators.minLength(3),
-    Validators.maxLength(100)
+    Validators.maxLength(100),
   ]);
   password = new UntypedFormControl('', [
     Validators.required,
-    Validators.minLength(6)
+    Validators.minLength(6),
   ]);
-  role = new UntypedFormControl('', [
-    Validators.required
-  ]);
+  role = new UntypedFormControl('', [Validators.required]);
 
-  constructor(private formBuilder: UntypedFormBuilder,
-              private router: Router,
-              public toast: ToastComponent,
-              private userService: UserService) {
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private router: Router,
+    public toast: ToastComponent,
+    private userService: UserService
+  ) {
     this.registerForm = this.formBuilder.group({
       username: this.username,
       email: this.email,
       password: this.password,
-      role: this.role
+      role: this.role,
     });
   }
 
@@ -62,7 +66,7 @@ export class RegisterComponent {
         this.toast.setMessage('You successfully registered!', 'success');
         this.router.navigate(['/login']);
       },
-      error: () => this.toast.setMessage('Email already exists', 'danger')
+      error: () => this.toast.setMessage('Email already exists', 'danger'),
     });
   }
 }

@@ -33,7 +33,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LogoutComponent,
     AccountComponent,
     AdminComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -42,18 +42,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
       config: {
         tokenGetter: (): string | null => localStorage.getItem('token'),
         // allowedDomains: ['localhost:3000', 'localhost:4200']
-      }
-    })
+      },
+    }),
   ],
   providers: [
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
     CatService,
-    UserService
+    UserService,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}
