@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { CatService } from './services/cat.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { PostService } from './services/post.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 // Components
@@ -22,6 +23,17 @@ import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ProfileComponent } from './profile/profile.component';
+// Mat Modules
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+const MAT_MODULES = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+];
 
 @NgModule({
   declarations: [
@@ -35,8 +47,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AccountComponent,
     AdminComponent,
     NotFoundComponent,
+    ProfileComponent,
   ],
   imports: [
+    ... MAT_MODULES,
     AppRoutingModule,
     SharedModule,
     JwtModule.forRoot({
@@ -52,6 +66,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AuthGuardAdmin,
     CatService,
     UserService,
+    PostService,
     provideAnimationsAsync(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

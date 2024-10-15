@@ -9,27 +9,27 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getCats(): Observable<Post[]> {
+  getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>('/api/posts');
   }
 
-  countCats(): Observable<number> {
+  countPosts(): Observable<number> {
     return this.http.get<number>('/api/posts/count');
   }
 
-  addCat(post: Post): Observable<Post> {
+  addPost(post: Post): Observable<Post> {
     return this.http.post<Post>('/api/post', post);
   }
 
-  getCat(post: Post): Observable<Post> {
+  getPost(post: Post): Observable<Post> {
     return this.http.get<Post>(`/api/post/${post._id}`);
   }
 
-  editCat(post: Post): Observable<string> {
+  editPost(post: Post): Observable<string> {
     return this.http.put(`/api/post/${post._id}`, post, { responseType: 'text' });
   }
 
-  deleteCat(post: Post): Observable<string> {
+  deletePost(post: Post): Observable<string> {
     return this.http.delete(`/api/post/${post._id}`, { responseType: 'text' });
   }
 
