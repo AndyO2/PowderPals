@@ -2,7 +2,7 @@ import { Router, Application } from 'express';
 
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
-import PostCtrl from 'controllers/post';
+import PostCtrl from './controllers/post';
 
 const setRoutes = (app: Application): void => {
   const router = Router();

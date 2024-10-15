@@ -21,6 +21,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AuthGuardAdmin,
     CatService,
     UserService,
+    provideAnimationsAsync(),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],

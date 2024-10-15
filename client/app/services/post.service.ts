@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Post } from '../shared/models/post.model';
 
 @Injectable()
-export class CatService {
+export class PostService {
 
   constructor(private http: HttpClient) { }
 

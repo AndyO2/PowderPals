@@ -30,6 +30,7 @@
               "client/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "client/styles.scss"
             ],
@@ -91,6 +92,7 @@
               "client/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "client/styles.scss"
             ],
