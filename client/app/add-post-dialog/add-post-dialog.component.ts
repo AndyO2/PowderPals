@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrl: './add-post.component.scss'
+  selector: 'app-add-post-dialog',
+  templateUrl: './add-post-dialog.component.html',
+  styleUrl: './add-post-dialog.component.scss'
 })
-export class AddPostComponent {
+export class AddPostDialogComponent {
   addPostFormGroup: FormGroup;
   // range: FormGroup;
 

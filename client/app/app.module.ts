@@ -24,7 +24,7 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ProfileComponent } from './profile/profile.component';
-import { AddPostComponent } from './add-post/add-post.component';
+import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.component';
 // Mat Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -56,7 +56,7 @@ const MAT_MODULES = [
     AdminComponent,
     NotFoundComponent,
     ProfileComponent,
-    AddPostComponent,
+    AddPostDialogComponent,
   ],
   imports: [
     ... MAT_MODULES,
