@@ -30,15 +30,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+// Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
-// import { provideNativeDateAdapter } from '@angular/material/core';
 
 const MAT_MODULES = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
+  MatDialogModule
 ];
 
 @NgModule({

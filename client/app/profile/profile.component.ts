@@ -5,7 +5,7 @@ import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 import { Post } from '../shared/models/post.model';
 import { ToastComponent } from '../shared/toast/toast.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -20,9 +20,9 @@ export class ProfileComponent implements OnInit {
 
   message = new FormControl();
 
-  form = new FormGroup({
-    message: this.message
-  });
+  // form = new FormGroup({
+  //   message: this.message
+  // });
 
   constructor(
     private auth: AuthService,
