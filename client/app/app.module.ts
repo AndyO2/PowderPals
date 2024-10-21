@@ -19,7 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './pages/account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -35,9 +35,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
 // Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { NavbarComponent } from "./core/navbar/navbar.component";
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -47,7 +51,10 @@ const MAT_MODULES = [
   MatDialogModule,
   MatIconModule,
   MatGridListModule,
-  MatCardModule
+  MatCardModule,
+  MatToolbarModule,
+  MatSlideToggleModule,
+  MatDividerModule,
 ];
 
 @NgModule({
@@ -65,20 +72,21 @@ const MAT_MODULES = [
     AddPostDialogComponent,
     AvatarComponent,
     ImageCropperComponent,
+    NavbarComponent
   ],
   imports: [
-    ... MAT_MODULES,
+    ...MAT_MODULES,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: (): string | null => localStorage.getItem('token'),
-        // allowedDomains: ['localhost:3000', 'localhost:4200']
-      },
+        config: {
+            tokenGetter: (): string | null => localStorage.getItem('token'),
+            // allowedDomains: ['localhost:3000', 'localhost:4200']
+        },
     }),
-  ],
+],
   providers: [
     AuthService,
     AuthGuardLogin,

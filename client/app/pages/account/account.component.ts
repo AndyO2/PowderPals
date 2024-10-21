@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastComponent } from '../shared/toast/toast.component';
-import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
-import { User } from '../shared/models/user.model';
+import { AuthService } from 'client/app/services/auth.service';
+import { UserService } from 'client/app/services/user.service';
+import { User } from 'client/app/shared/models/user.model';
+import { ToastComponent } from 'client/app/shared/toast/toast.component';
 
 @Component({
   selector: 'app-account',
@@ -13,7 +13,7 @@ export class AccountComponent implements OnInit {
   user: User = new User();
   isLoading = true;
 
-  constructor(private auth: AuthService,
+  constructor(public auth: AuthService,
               public toast: ToastComponent,
               private userService: UserService) { }
 

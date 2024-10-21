@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  isChecked = false;
+
   resorts = [
     { name: 'Brighton Ski Resort', description: 'Description 1', image: '../../assets/download.jpeg' },
     { name: 'Alta Ski Resort', description: 'Description 1', image: '../../assets/download.jpeg' },

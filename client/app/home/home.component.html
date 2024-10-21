@@ -1,23 +1,12 @@
-<div style="display: flex; flex-direction: column; width: 100%;">
-  <h1>CREATE A TRIP</h1>
-
-  <!-- <mat-grid-list cols="4" rowHeight="1:1" gutterSize="20px">
-    <mat-grid-tile *ngFor="let resort of resorts" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-      <mat-card style="width: 100%; height: 100%;">
-        <img mat-card-image [src]="resort.image" alt="{{ resort.name }}" style="width: 100%; height: 100%;">
-      </mat-card>
-      <mat-grid-tile-footer style="background-color: white; color: black;">
-        <div style="display: flex; flex-direction: row;">
-          <div style="margin-right: auto; display: flex; flex-direction: column;">
-            <h2>{{resort.name}}</h2>
-            <p>
-              {{resort.description}}
-            </p>
-          </div>
-        </div>
-      </mat-grid-tile-footer>
-    </mat-grid-tile>
-  </mat-grid-list> -->
-
-  
+<div class="container">
+  <div class="row">
+    <div *ngFor="let resort of resorts" class="card" style="width: 18rem;">
+      <img [src]="resort.image" class="card-img-top" alt="{{ resort.name }}">
+      <div class="card-body">
+        <h6 class="card-title" style="font-size: 1rem;">{{resort.name}}</h6>
+        <p class="card-text" style="font-size: 0.8rem;">Salt Lake City, UT</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
 </div>
