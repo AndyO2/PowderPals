@@ -2,43 +2,67 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
-<div class="card" *ngIf="!isLoading">
-  <h4 class="card-header">Account settings</h4>
-  <div class="card-body">
-    <form #accountForm="ngForm" (ngSubmit)="save(user)">
-      <div class="input-group">
-        <span class="input-group-text">
-          <i class="fa fa-user"></i>
-        </span>
-        <input class="form-control" type="text" name="username"
-               [(ngModel)]="user.username" placeholder="Username" required>
+<div class="container-fluid">
+  <div class="row">
+    <!-- COL 1 -->
+    <div class="col">
+      <div class="card" *ngIf="!isLoading">
+        <div class="card-body">
+          <img src="../../../assets/download.jpeg" class="img-thumbnail d-block mx-auto rounded" alt="...">
+
+          <h5 class="card-title">Bio</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.
+          </p>
+        </div>
+
+        <!-- <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul> -->
+
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
       </div>
-      <div class="input-group">
-        <span class="input-group-text">
-          <i class="fa fa-envelope"></i>
-        </span>
-        <input class="form-control" type="email" name="email"
-               [(ngModel)]="user.email" placeholder="Email" required>
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col">
+      <div class="card" *ngIf="!isLoading">
+        <div class="card-body">
+          <form #accountForm="ngForm" (ngSubmit)="save(user)">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-user"></i>
+              </span>
+              <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username"
+                required>
+            </div>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa fa-black-tie"></i>
+              </span>
+              <select class="form-control" name="role" [(ngModel)]="user.role" *ngIf="auth.isAdmin">
+                <option value="" disabled>Role</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
+              <i class="fa fa-save"></i>
+              Save
+            </button>
+          </form>
+          <button class="btn btn-primary">
+            <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+              <i class="fa fa-sign-out"></i> Logout
+            </a>
+          </button>
+        </div>
       </div>
-      <div class="input-group">
-        <span class="input-group-text">
-          <i class="fa fa-black-tie"></i>
-        </span>
-        <select class="form-control" name="role" [(ngModel)]="user.role">
-          <option value="" disabled>Role</option>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
-        <i class="fa fa-save"></i>
-        Save
-      </button>
-    </form>
-    <button class="btn btn-primary">
-      <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-        <i class="fa fa-sign-out"></i> Logout
-    </a>
-    </button>
+    </div>
   </div>
 </div>

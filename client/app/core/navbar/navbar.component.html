@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-sm">
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbar-supported-content"
-            aria-controls="navbar-supported-content" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content"
+        aria-controls="navbar-supported-content" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -19,7 +18,7 @@
             </li>
             <li class="nav-item">
                 <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
-                <i class="fa fa-sign-in"></i> Login
+                    <i class="fa fa-sign-in"></i> Login
                 </a>
             </li>
             <li class="nav-item">
@@ -34,9 +33,16 @@
             </li>
             <li class="nav-item">
                 <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-                  <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+                    <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
                 </a>
             </li>
+            <button type="button" class="btn btn-primary position-relative">
+                Inbox
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99+
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
         </ul>
     </div>
 </nav>
