@@ -6,37 +6,53 @@ interface IUser {
   email: string;
   password: string;
   role: string;
+  bio: string;
+  profilePictureURL: string;
   isModified(password: string): boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  comparePassword(password: string, callback: (err: any, isMatch: boolean) => void): boolean;
+  comparePassword(
+    password: string,
+    callback: (err: any, isMatch: boolean) => void
+  ): boolean;
 }
 
 const userSchema = new Schema<IUser>({
   email: { type: String, unique: true, lowercase: true, trim: true },
   username: String,
   password: String,
-  role: String
+  role: String,
+  bio: String,
+  profilePictureURL: String,
 });
 
 // Before saving the user, hash the password
-userSchema.pre<IUser>('save', function(next): void {
+userSchema.pre<IUser>('save', function (next): void {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this;
-  if (!user.isModified('password')) { return next(); }
+  if (!user.isModified('password')) {
+    return next();
+  }
   genSalt(10, (err, salt) => {
-    if (err) { return next(err); }
+    if (err) {
+      return next(err);
+    }
     hash(user.password, salt, (error, hashedPassword) => {
-      if (error) { return next(error); }
+      if (error) {
+        return next(error);
+      }
       user.password = hashedPassword;
       next();
     });
   });
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-userSchema.methods.comparePassword = function(candidatePassword: string, callback: any): void {
+userSchema.methods.comparePassword = function (
+  candidatePassword: string,
+  callback: any
+): void {
   compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) { return callback(err); }
+    if (err) {
+      return callback(err);
+    }
     callback(null, isMatch);
   });
 };
@@ -46,7 +62,7 @@ userSchema.set('toJSON', {
   transform: (doc, ret) => {
     delete ret.password;
     return ret;
-  }
+  },
 });
 
 const User = model<IUser>('User', userSchema);

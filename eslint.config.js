@@ -14,6 +14,7 @@ module.exports = tseslint.config(
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      "@typescript-eslint/no-explicit-any": "off",
       "@angular-eslint/directive-selector": [
         "error",
         {
@@ -39,7 +40,7 @@ module.exports = tseslint.config(
       "spaced-comment": "error",
       "space-before-blocks": "error",
       "space-infix-ops": "error",
-      "semi": "error",
+      semi: "error",
     },
   },
   {

@@ -3,4 +3,6 @@ export class User {
   username?: string;
   email?: string;
   role?: string;
+  bio?: string;
+  profilePictureURL?: any;
 }

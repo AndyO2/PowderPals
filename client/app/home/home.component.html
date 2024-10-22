@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 g-3">
-    <div *ngFor="let resort of resorts" class="card" style="width: 18rem;">
+    <div *ngFor="let resort of resorts" class="card shadow mx-1" style="width: 18rem;">
       <img [src]="resort.image" class="card-img-top" alt="{{ resort.name }}">
       <div class="card-body">
         <h6 class="card-title" style="font-size: 1rem;">{{resort.name}}</h6>

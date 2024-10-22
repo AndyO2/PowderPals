@@ -42,6 +42,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NavbarComponent } from "./core/navbar/navbar.component";
+import { BrowserModule } from '@angular/platform-browser';
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -76,17 +77,18 @@ const MAT_MODULES = [
   ],
   imports: [
     ...MAT_MODULES,
+    BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
     JwtModule.forRoot({
-        config: {
-            tokenGetter: (): string | null => localStorage.getItem('token'),
-            // allowedDomains: ['localhost:3000', 'localhost:4200']
-        },
+      config: {
+        tokenGetter: (): string | null => localStorage.getItem('token'),
+        // allowedDomains: ['localhost:3000', 'localhost:4200']
+      },
     }),
-],
+  ],
   providers: [
     AuthService,
     AuthGuardLogin,
@@ -100,4 +102,4 @@ const MAT_MODULES = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -6,16 +6,19 @@ import { ToastComponent } from 'client/app/shared/toast/toast.component';
 
 @Component({
   selector: 'app-account',
-  templateUrl: './account.component.html'
+  templateUrl: './account.component.html',
+  styleUrl: './account.component.scss',
 })
 export class AccountComponent implements OnInit {
-
   user: User = new User();
   isLoading = true;
+  url: any = '';
 
-  constructor(public auth: AuthService,
-              public toast: ToastComponent,
-              private userService: UserService) { }
+  constructor(
+    public auth: AuthService,
+    public toast: ToastComponent,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -23,9 +26,9 @@ export class AccountComponent implements OnInit {
 
   getUser(): void {
     this.userService.getUser(this.auth.currentUser).subscribe({
-      next: data => this.user = data,
-      error: error => console.log(error),
-      complete: () => this.isLoading = false
+      next: (data) => (this.user = data),
+      error: (error) => console.log(error),
+      complete: () => (this.isLoading = false),
     });
   }
 
@@ -36,7 +39,24 @@ export class AccountComponent implements OnInit {
         this.auth.currentUser = user;
         this.auth.isAdmin = user.role === 'admin';
       },
-      error: error => console.log(error)
+      error: (error) => console.log(error),
     });
+  }
+
+  onSelectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.url = event?.target?.result;
+        console.log(this.url);
+      };
+    }
+  }
+  public delete() {
+    this.url = null;
   }
 }

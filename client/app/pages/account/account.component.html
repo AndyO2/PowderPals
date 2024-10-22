@@ -1,4 +1,4 @@
-<app-loading [condition]="isLoading"></app-loading>
+<!-- <app-loading [condition]="isLoading"></app-loading> -->
 
 <app-toast [message]="toast.message"></app-toast>
 
@@ -8,23 +8,49 @@
     <div class="col">
       <div class="card" *ngIf="!isLoading">
         <div class="card-body">
-          <img src="../../../assets/download.jpeg" class="img-thumbnail d-block mx-auto rounded" alt="...">
+          <!-- <h5 class="card-title">Profile</h5> -->
 
-          <h5 class="card-title">Bio</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-          </p>
-        </div>
+          <!-- Profile Picture -->
+          <div class="image-container rounded">
+            <label class="hoverable" for="fileInput">
+              <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="profile picture"
+                class="mx-auto" />
+            </label>
+            <br />
+            <input id="fileInput" type="file" [(ngModel)]="url" class="select-profile-picture"
+              (change)="onSelectFile($event)" />
+            <span class="message">Tap here to select your picture</span>
+          </div>
+          <br /><button *ngIf="url" (click)="delete()">delete</button>
 
-        <!-- <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul> -->
+          <form #accountForm="ngForm">
+            <!-- <div class="input-group">
+              <label class="hoverable" for="fileInput">
+                <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="profile picture"
+                  class="mx-auto" />
+              </label>
+              <br />
+              <input id="fileInput" type="file" name="profilePictureURL" [(ngModel)]="url"
+                class="select-profile-picture" (change)="onSelectFile($event)" />
+              <span class="message">Tap here to select your picture</span>
+            </div> -->
 
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">&#64;</span>
+              <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username"
+                [(ngModel)]="user.username" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <textarea class="form-control" type="text" name="bio" [(ngModel)]="user.bio" placeholder="Bio"
+                required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid" (click)="save(user)">
+              <i class="fa fa-save"></i>
+              Save
+            </button>
+          </form>
         </div>
       </div>
     </div>
