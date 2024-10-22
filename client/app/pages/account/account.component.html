@@ -54,41 +54,5 @@
         </div>
       </div>
     </div>
-
-    <!-- COL 2 -->
-    <div class="col">
-      <div class="card" *ngIf="!isLoading">
-        <div class="card-body">
-          <form #accountForm="ngForm" (ngSubmit)="save(user)">
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="fa fa-user"></i>
-              </span>
-              <input class="form-control" type="text" name="username" [(ngModel)]="user.username" placeholder="Username"
-                required>
-            </div>
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="fa fa-black-tie"></i>
-              </span>
-              <select class="form-control" name="role" [(ngModel)]="user.role" *ngIf="auth.isAdmin">
-                <option value="" disabled>Role</option>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
-              <i class="fa fa-save"></i>
-              Save
-            </button>
-          </form>
-          <button class="btn btn-primary">
-            <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-              <i class="fa fa-sign-out"></i> Logout
-            </a>
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

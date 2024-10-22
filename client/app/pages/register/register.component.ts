@@ -6,9 +6,8 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-
-import { UserService } from '../services/user.service';
-import { ToastComponent } from '../shared/toast/toast.component';
+import { UserService } from 'client/app/services/user.service';
+import { ToastComponent } from 'client/app/shared/toast/toast.component';
 
 @Component({
   selector: 'app-register',
