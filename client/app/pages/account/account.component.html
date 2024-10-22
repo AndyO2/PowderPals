@@ -12,12 +12,12 @@
 
           <!-- Profile Picture -->
           <div class="image-container rounded">
-            <label class="hoverable" for="fileInput">
+            <label class="hoverable" for="file-input">
               <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" alt="profile picture"
                 class="mx-auto" />
             </label>
             <br />
-            <input id="fileInput" type="file" [(ngModel)]="url" class="select-profile-picture"
+            <input id="file-input" type="file" [(ngModel)]="url" class="select-profile-picture"
               (change)="onSelectFile($event)" />
             <span class="message">Tap here to select your picture</span>
           </div>
