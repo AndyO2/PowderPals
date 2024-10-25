@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  addResort() {
+    // TODO: Implement resort api to add a resort
+    console.log('addResort');
+  }
   filterByContinent(value: Event) {
     // TODO: Implement resort api to filter by continent
     console.log(value);

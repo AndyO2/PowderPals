@@ -26,6 +26,7 @@ import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.compon
 import { AvatarComponent } from './avatar/avatar.component';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.component';
 // Mat Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -74,6 +75,7 @@ const MAT_MODULES = [
     AvatarComponent,
     ImageCropperComponent,
     NavbarComponent,
+    AddResortDialogComponent,
   ],
   imports: [
     ...MAT_MODULES,
