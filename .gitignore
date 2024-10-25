@@ -45,4 +45,4 @@ Thumbs.db
 /data
 
 # env
-.env
+/.env
