@@ -3,12 +3,14 @@ import { Router, Application } from 'express';
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
 import PostCtrl from './controllers/post';
+import ResortCtrl from './controllers/resort';
 
 const setRoutes = (app: Application): void => {
   const router = Router();
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
   const postCtrl = new PostCtrl();
+  const resortCtrl = new ResortCtrl();
 
   // Cats
   router.route('/cats').get(catCtrl.getAll);
@@ -35,6 +37,14 @@ const setRoutes = (app: Application): void => {
   router.route('/post/:id').put(postCtrl.update);
   router.route('/post/:id').delete(postCtrl.delete);
 
+  // Resorts
+  router.route('/resorts').get(resortCtrl.getAll);
+  // router.route('/resorts/count').get(resortCtrl.count);
+  router.route('/resort').post(resortCtrl.insert);
+  router.route('/resort/:id').get(resortCtrl.get);
+  // router.route('/resort/:id').put(resortCtrl.update);
+  // router.route('/resort/:id').delete(resortCtrl.delete);
+
   // Test routes
   if (process.env.NODE_ENV === 'test') {
     router.route('/cats/delete').delete(catCtrl.deleteAll);
@@ -43,7 +53,6 @@ const setRoutes = (app: Application): void => {
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
-
 };
 
 export default setRoutes;

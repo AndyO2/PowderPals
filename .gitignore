@@ -43,3 +43,6 @@ Thumbs.db
 
 # MongoDB
 /data
+
+# env
+.env
