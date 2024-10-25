@@ -7,6 +7,21 @@
     </button>
   </div>
 
+  <div class="d-flex justify-content-start align-items-center my-3">
+    <select class="form-select me-2" (change)="filterByContinent($event)">
+      <option value="">Select Continent</option>
+      <option value="North America">North America</option>
+      <option value="Europe">Europe</option>
+      <option value="Asia">Asia</option>
+      <option value="Australia">Australia</option>
+      <option value="South America">South America</option>
+    </select>
+
+    <input type="text" placeholder="Filter by city" class="form-control me-2" (input)="filterByCity($event)">
+    <input type="text" placeholder="Filter by country" class="form-control me-2" (input)="filterByCountry($event)">
+    <!-- Add more filters as needed -->
+  </div>
+
   <div class="row g-3">
     <div *ngFor="let resort of resorts" class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card shadow mx-1">
