@@ -44,6 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ResortsService } from './services/resorts.service';
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -98,6 +99,7 @@ const MAT_MODULES = [
     CatService,
     UserService,
     PostService,
+    ResortsService,
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
   ],

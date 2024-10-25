@@ -24,14 +24,14 @@
                 <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
                     <i class="fa fa-user-plus"></i> Register
                 </a>
-                <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
-                    <i class="fa fa-lock"></i> Admin
-                </a>
             </div>
         </div>
 
         <div class="navbar-nav ms-auto">
             <div class="navbar-nav">
+                <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
+                    <i class="fa fa-lock"></i> Admin
+                </a>
                 <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
                     <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
                 </a>

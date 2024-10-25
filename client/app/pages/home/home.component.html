@@ -2,9 +2,11 @@
 
   <div class="d-flex justify-content-end align-items-center my-3">
     Not seeing your favorite resort?
-    <button class="btn btn-primary ms-2" (click)="addResort()">
-      Add it here!
+    <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#add-resort-modal">
+      Add a Resort!
     </button>
+
+    <app-add-resort-dialog></app-add-resort-dialog>
   </div>
 
   <div class="d-flex justify-content-start align-items-center my-3">

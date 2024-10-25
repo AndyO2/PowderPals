@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ResortsService } from 'client/app/services/resorts.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  constructor(
+    private resortsService: ResortsService,
+    private matDialog: MatDialog
+  ) {}
+
   addResort() {
     // TODO: Implement resort api to add a resort
-    console.log('addResort');
   }
+
   filterByContinent(value: Event) {
     // TODO: Implement resort api to filter by continent
     console.log(value);
