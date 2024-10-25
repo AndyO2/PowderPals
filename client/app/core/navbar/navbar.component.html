@@ -4,70 +4,38 @@
             PowderPals
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Pricing</a>
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </div>
-        </div>
-
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-                    <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
-                </a>
-            </div>
-        </div>
-
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbar-supported-content" aria-controls="navbar-supported-content" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbar-supported-content">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a routerLink="/" class="nav-link" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}">
-                        <i class="fa fa-calendar-plus-o"></i> Create
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/trips" class="nav-link" routerLinkActive="active">
-                        <i class="fa fa-plane"></i> My Trips
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
-                        <i class="fa fa-sign-in"></i> Login
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
-                        <i class="fa fa-user-plus"></i> Register
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/admin" class="nav-link" routerLinkActive="active"
-                        *ngIf="auth.loggedIn && auth.isAdmin">
-                        <i class="fa fa-lock"></i> Admin
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-                        <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
-                    </a>
-                </li>
-            </ul>
-        </div> -->
-    </div>
+            <div class="navbar-nav me-auto">
+                <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    <i class="fa fa-calendar-plus-o"></i> Create
+                </a>
+                <a routerLink="/trips" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-plane"></i> My Trips
+                </a>
+                <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+                    <i class="fa fa-sign-in"></i> Login
+                </a>
+                <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+                    <i class="fa fa-user-plus"></i> Register
+                </a>
+                <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
+                    <i class="fa fa-lock"></i> Admin
+                </a>
+            </div>
+        </div>
 
+        <div class="navbar-nav ms-auto">
+            <div class="navbar-nav">
+                <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                    <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+                </a>
+            </div>
+        </div>
+    </div>
 </nav>
