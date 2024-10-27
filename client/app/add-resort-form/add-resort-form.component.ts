@@ -14,15 +14,17 @@ import { ToastComponent } from '../shared/toast/toast.component';
   styleUrl: './add-resort-form.component.scss',
 })
 export class AddResortFormComponent implements AfterViewInit {
-  @ViewChild('resortName') resortNames!: ElementRef;
+  @ViewChild('resortAddress') resortNames!: ElementRef;
 
   autocomplete!: google.maps.places.Autocomplete | undefined;
 
   addResortFormGroup: FormGroup;
-  resortName = new FormControl('', Validators.required);
-  resortCity = new FormControl('', Validators.required);
-  resortState = new FormControl('', Validators.required);
-  resortCountry = new FormControl('', Validators.required);
+  name = new FormControl('', Validators.required);
+  city = new FormControl('', Validators.required);
+  state = new FormControl('', Validators.required);
+  country = new FormControl('', Validators.required);
+  rating = new FormControl(0, Validators.required);
+  address = new FormControl('', Validators.required);
 
   constructor(
     private resortsService: ResortsService,
@@ -30,25 +32,77 @@ export class AddResortFormComponent implements AfterViewInit {
     public toast: ToastComponent
   ) {
     this.addResortFormGroup = this.formBuilder.group({
-      resortName: this.resortName,
-      resortCity: this.resortCity,
-      resortState: this.resortState,
-      resortCountry: this.resortCountry,
+      name: this.name,
+      city: this.city,
+      state: this.state,
+      country: this.country,
+      rating: this.rating,
+      address: this.address,
     });
   }
 
   ngAfterViewInit() {
     this.autocomplete = new google.maps.places.Autocomplete(
-      this.resortNames.nativeElement
+      this.resortNames.nativeElement,
+      {
+        fields: ['name', 'address_components', 'formatted_address', 'rating'],
+        types: ['establishment'],
+      }
     );
 
     this.autocomplete.addListener('place_changed', () => {
       const place = this.autocomplete?.getPlace();
+      let placeName = '';
+      let city = '';
+      let state = '';
+      let country = '';
+      let formattedAddress = '';
+      let rating = 0;
+
+      if (place?.formatted_address) {
+        formattedAddress = place.formatted_address;
+        console.log(formattedAddress);
+      }
+
+      if (place?.name) {
+        placeName = place.name.split(',')[0].trim();
+      }
+
+      if (place?.rating) {
+        rating = place.rating;
+        console.log(rating);
+      }
+
+      place?.address_components?.forEach((component) => {
+        if (component.types.includes('locality')) {
+          city = component.long_name;
+        }
+        if (
+          component.types.includes('administrative_area_level_1') ||
+          component.types.includes('administrative_area_level_2')
+        ) {
+          state = component.long_name;
+        }
+        if (component.types.includes('country')) {
+          country = component.long_name;
+        }
+      });
+
+      this.addResortFormGroup.patchValue({
+        name: placeName,
+        city,
+        state,
+        country,
+        rating,
+        address: formattedAddress,
+      });
+
       console.log(place);
     });
   }
 
   addResort() {
+    console.log(this.addResortFormGroup.value);
     this.resortsService.addResort(this.addResortFormGroup.value).subscribe({
       next: (data) => {
         console.log(data);
@@ -57,13 +111,8 @@ export class AddResortFormComponent implements AfterViewInit {
       },
       error: (error) => {
         console.error(error);
+        this.toast.setMessage('Resort added Unsuccessfully.', 'danger');
       },
-    });
-  }
-
-  getResort(name: string) {
-    this.resortsService.getGoogleResortInfo(name).subscribe((data) => {
-      console.log(data);
     });
   }
 }

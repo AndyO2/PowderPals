@@ -5,19 +5,23 @@ interface IResort {
   city: string;
   state: string;
   country: string;
+  address: string;
   longitude: number;
   latitude: number;
   rating: number;
+  priceLevel: number;
 }
 
 const resortSchema = new Schema<IResort>({
-  name: String,
+  name: { type: String, required: true },
   city: String,
   state: String,
   country: String,
+  address: String,
   longitude: Number,
   latitude: Number,
   rating: Number,
+  priceLevel: Number,
 });
 
 const Resort = model<IResort>('Resort', resortSchema);

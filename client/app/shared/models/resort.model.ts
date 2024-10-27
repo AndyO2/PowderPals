@@ -4,7 +4,7 @@ export class Resort {
   city?: string;
   state?: string;
   country?: string;
-  longitude?: number;
-  latitude?: number;
+  address?: string;
   rating?: number;
+  priceLevel?: number;
 }
