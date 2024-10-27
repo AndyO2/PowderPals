@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             PowderPals
         </a>
 
@@ -13,10 +13,7 @@
         <div class="collapse navbar-collapse" id="navbar-supported-content">
             <div class="navbar-nav me-auto">
                 <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-                    <i class="fa fa-calendar-plus-o"></i> Create
-                </a>
-                <a routerLink="/trips" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plane"></i> My Trips
+                    <i class="fa fa-calendar-plus-o"></i> Start a Trip
                 </a>
                 <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
                     <i class="fa fa-sign-in"></i> Login
@@ -31,6 +28,9 @@
             <div class="navbar-nav">
                 <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
                     <i class="fa fa-lock"></i> Admin
+                </a>
+                <a routerLink="/trips" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-plane"></i> My Trips
                 </a>
                 <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
                     <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})

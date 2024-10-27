@@ -45,6 +45,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ResortsService } from './services/resorts.service';
+// google
+import { GoogleMapsModule } from '@angular/google-maps';
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -85,6 +87,7 @@ const MAT_MODULES = [
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    GoogleMapsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: (): string | null => localStorage.getItem('token'),

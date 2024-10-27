@@ -2,11 +2,30 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title">Modal title</h6>
+                <h6 class="modal-title">Add A Resort</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <form [formGroup]="addResortFormGroup" (ngSubmit)="addResort()">
+                    <div class="row row-cols-1 g-2">
+                        <div class="col">
+                            <input type="text" class="form-control" formControlName="resortName"
+                                placeholder="Resort Name">
+                            <input type="text" class="form-control" formControlName="resortCity"
+                                placeholder="Resort City">
+                            <input type="text" class="form-control" formControlName="resortState"
+                                placeholder="Resort State">
+                            <input type="text" class="form-control" formControlName="resortCountry"
+                                placeholder="Resort Country">
+                            <input type="text" class="form-control" formControlName="resortContinent"
+                                placeholder="Resort Continent">
+                            <input type="text" class="form-control" formControlName="resortDescription"
+                                placeholder="Resort Description">
+                            <input type="file" class="form-control" formControlName="resortImage"
+                                placeholder="Resort Image">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
