@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ResortsService } from '../services/resorts.service';
 import {
   FormBuilder,
@@ -13,15 +13,16 @@ import { ToastComponent } from '../shared/toast/toast.component';
   templateUrl: './add-resort-dialog.component.html',
   styleUrl: './add-resort-dialog.component.scss',
 })
-export class AddResortDialogComponent {
+export class AddResortDialogComponent implements AfterViewInit {
+  @ViewChild('resortName') resortNames!: ElementRef;
+
+  autocomplete!: google.maps.places.Autocomplete | undefined;
+
   addResortFormGroup: FormGroup;
   resortName = new FormControl('', Validators.required);
   resortCity = new FormControl('', Validators.required);
   resortState = new FormControl('', Validators.required);
   resortCountry = new FormControl('', Validators.required);
-  resortContinent = new FormControl('', Validators.required);
-  resortDescription = new FormControl('', Validators.required);
-  resortImage = new FormControl('', Validators.required);
 
   constructor(
     private resortsService: ResortsService,
@@ -33,9 +34,17 @@ export class AddResortDialogComponent {
       resortCity: this.resortCity,
       resortState: this.resortState,
       resortCountry: this.resortCountry,
-      resortDescription: this.resortDescription,
-      resortContinent: this.resortContinent,
-      resortImage: this.resortImage,
+    });
+  }
+
+  ngAfterViewInit() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.resortNames.nativeElement
+    );
+
+    this.autocomplete.addListener('place_changed', () => {
+      const place = this.autocomplete?.getPlace();
+      console.log(place);
     });
   }
 

@@ -1,4 +1,26 @@
-<div class="modal fade" id="add-resort-modal" tabindex="-1" aria-labelledby="add-resort-modal-label" aria-hidden="true">
+<form class="row g-3" [formGroup]="addResortFormGroup">
+    <div class="col-12">
+        <label for="resort-name" class="form-label">Resort Name</label>
+        <input type="text" class="form-control" #resortName placeholder="Enter a Resort Name">
+    </div>
+    <div class="col-12">
+        <label for="resort-country" class="form-label">Country</label>
+        <input type="text" class="form-control" id="resort-country" formControlName="resortCountry">
+    </div>
+    <div class="col-md-8">
+        <label for="resort-city" class="form-label">City</label>
+        <input type="text" class="form-control" id="resort-city" formControlName="resortCity">
+    </div>
+    <div class="col-md-4">
+        <label for="resort-state" class="form-label">State</label>
+        <select id="resort-state" class="form-select" formControlName="resortState">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+</form>
+
+<!-- <div class="modal fade" id="add-resort-modal" tabindex="-1" aria-labelledby="add-resort-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,31 +28,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="addResortFormGroup" (ngSubmit)="addResort()">
-                    <div class="row row-cols-1 g-2">
-                        <div class="col">
-                            <input type="text" class="form-control" formControlName="resortName"
-                                placeholder="Resort Name">
-                            <input type="text" class="form-control" formControlName="resortCity"
-                                placeholder="Resort City">
-                            <input type="text" class="form-control" formControlName="resortState"
-                                placeholder="Resort State">
-                            <input type="text" class="form-control" formControlName="resortCountry"
-                                placeholder="Resort Country">
-                            <input type="text" class="form-control" formControlName="resortContinent"
-                                placeholder="Resort Continent">
-                            <input type="text" class="form-control" formControlName="resortDescription"
-                                placeholder="Resort Description">
-                            <input type="file" class="form-control" formControlName="resortImage"
-                                placeholder="Resort Image">
-                        </div>
+                <form class="row g-3" [formGroup]="addResortFormGroup">
+                    <div class="col-12">
+                        <label for="resort-name" class="form-label">Resort Name</label>
+                        <input type="text" class="form-control" #resortName placeholder="Enter a Resort Name">
+                    </div>
+                    <div class="col-12">
+                        <label for="resort-country" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="resort-country" formControlName="resortCountry">
+                    </div>
+                    <div class="col-md-8">
+                        <label for="resort-city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="resort-city" formControlName="resortCity">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="resort-state" class="form-label">State</label>
+                        <select id="resort-state" class="form-select" formControlName="resortState">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" (click)="addResort()">Add Resort</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->

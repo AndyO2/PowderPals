@@ -24,3 +24,18 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+// To get google autocomplete to show in front of the modal
+.pac-container {
+  background-color: #fff;
+  z-index: 20;
+  position: fixed;
+  display: inline-block;
+  float: left;
+}
+.modal {
+  z-index: 20;
+}
+.modal-backdrop {
+  z-index: 10;
+}
