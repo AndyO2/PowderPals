@@ -9,11 +9,11 @@ import {
 import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
-  selector: 'app-add-resort-form',
-  templateUrl: './add-resort-form.component.html',
-  styleUrl: './add-resort-form.component.scss',
+  selector: 'app-add-resort-dialog',
+  templateUrl: './add-resort-dialog.component.html',
+  styleUrl: './add-resort-dialog.component.scss',
 })
-export class AddResortFormComponent implements AfterViewInit {
+export class AddResortDialogComponent implements AfterViewInit {
   @ViewChild('resortAddress') resortNames!: ElementRef;
 
   autocomplete!: google.maps.places.Autocomplete | undefined;
@@ -56,12 +56,12 @@ export class AddResortFormComponent implements AfterViewInit {
       let city = '';
       let state = '';
       let country = '';
-      let formattedAddress = '';
+      let address = '';
       let rating = 0;
 
       if (place?.formatted_address) {
-        formattedAddress = place.formatted_address;
-        console.log(formattedAddress);
+        address = place.formatted_address;
+        console.log(address);
       }
 
       if (place?.name) {
@@ -94,7 +94,7 @@ export class AddResortFormComponent implements AfterViewInit {
         state,
         country,
         rating,
-        address: formattedAddress,
+        address,
       });
 
       console.log(place);

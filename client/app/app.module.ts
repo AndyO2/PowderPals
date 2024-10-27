@@ -24,7 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { AddResortFormComponent } from './add-resort-form/add-resort-form.component';
+import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.component';
 // Mat Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -74,7 +74,7 @@ const MAT_MODULES = [
     NotFoundComponent,
     AddPostDialogComponent,
     NavbarComponent,
-    AddResortFormComponent,
+    AddResortDialogComponent,
   ],
   imports: [
     ...MAT_MODULES,
