@@ -13,7 +13,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.component';
+import { AddResortFormComponent } from './add-resort-form/add-resort-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'add', component: AddResortDialogComponent },
+  { path: 'add', component: AddResortFormComponent },
   {
     path: 'account',
     component: AccountComponent,

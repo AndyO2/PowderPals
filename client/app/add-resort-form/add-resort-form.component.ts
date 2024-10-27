@@ -9,11 +9,11 @@ import {
 import { ToastComponent } from '../shared/toast/toast.component';
 
 @Component({
-  selector: 'app-add-resort-dialog',
-  templateUrl: './add-resort-dialog.component.html',
-  styleUrl: './add-resort-dialog.component.scss',
+  selector: 'app-add-resort-form',
+  templateUrl: './add-resort-form.component.html',
+  styleUrl: './add-resort-form.component.scss',
 })
-export class AddResortDialogComponent implements AfterViewInit {
+export class AddResortFormComponent implements AfterViewInit {
   @ViewChild('resortName') resortNames!: ElementRef;
 
   autocomplete!: google.maps.places.Autocomplete | undefined;
