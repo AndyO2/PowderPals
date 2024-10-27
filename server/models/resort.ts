@@ -6,6 +6,7 @@ interface IResort {
   state: string;
   country: string;
   address: string;
+  continent: string;
   longitude: number;
   latitude: number;
   rating: number;
@@ -18,6 +19,7 @@ const resortSchema = new Schema<IResort>({
   state: String,
   country: String,
   address: String,
+  continent: String,
   longitude: Number,
   latitude: Number,
   rating: Number,

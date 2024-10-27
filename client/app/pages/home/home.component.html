@@ -1,38 +1,20 @@
 <div class="container-fluid">
-
-  <!-- <div class="d-flex justify-content-end align-items-center my-3">
-    <div class="modal fade" id="add-resort-modal" tabindex="-1" aria-labelledby="add-resort-modal-label"
-      aria-hidden="true">
-      <app-add-resort-dialog></app-add-resort-dialog>
-    </div>
-  </div> -->
-
-  <div class="d-flex justify-content-start align-items-center my-3">
-    <select class="form-select me-2" (change)="filterByContinent($event)" placeholder="Filter by Continent">
-      <option value="">Select Continent</option>
-      <option value="North America">North America</option>
-      <option value="South America">South America</option>
-      <option value="Europe">Europe</option>
-      <option value="Asia">Asia</option>
-      <option value="Africa">Africa</option>
-      <option value="Australia">Australia</option>
-      <option value="Antarctica">Antarctica</option>
-    </select>
-    <input type="text" placeholder="Filter by city" class="form-control me-2" (input)="filterByCity($event)">
-    <input type="text" placeholder="Filter by country" class="form-control me-2" (input)="filterByCountry($event)">
+  <div class="row g-3">
+    <form-group [formGroup]="filterFormGroup">
+      <input type="text" placeholder="Filter by resort name" class="form-control me-2" formControlName="name">
+      <input type="text" placeholder="Filter by country" class="form-control me-2" formControlName="country">
+      <select class="form-select me-2" formControlName="continent" placeholder="Filter by Continent">
+        <option value="">Select Continent</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value="Australia">Australia</option>
+        <option value="Antarctica">Antarctica</option>
+      </select>
+    </form-group>
   </div>
-
-  <style>
-    .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid black;
-    }
-
-    .card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-  </style>
 
   <div class="row g-3">
     <div *ngFor="let resort of resorts" class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -58,8 +40,6 @@
               <i class="fa fa-plane"></i>&nbsp;5 trips going here
             </span>
           </div>
-
-          <!-- <button class="btn btn-primary">View Details</button> -->
         </div>
       </div>
     </div>

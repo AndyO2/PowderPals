@@ -27,11 +27,21 @@ export class ResortsService {
     return this.http.delete<Resort>(`/api/resort/${resort._id}`);
   }
 
-  getGoogleResortInfo(query: string): Observable<any> {
-    // https://places.googleapis.com/v1/places:BrightonResort
-    console.log(query);
-    return this.http.get(
-      `https://maps.googleapis.com/maps/api/js?key=${'AIzaSyAHQPMzTNCRSYzf0V3tW8KnfqSeq151WIQ'}&loading=async&libraries=places&callback=initMap"`
-    );
+  filterResorts(filters: {
+    name?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    rating?: number;
+  }): Observable<Resort[]> {
+    const params = new URLSearchParams();
+    if (filters.name) params.append('name', filters.name);
+    if (filters.city) params.append('city', filters.city);
+    if (filters.state) params.append('state', filters.state);
+    if (filters.country) params.append('country', filters.country);
+    if (filters.rating !== undefined)
+      params.append('rating', filters.rating.toString());
+
+    return this.http.get<Resort[]>(`/api/resorts?${params.toString()}`);
   }
 }

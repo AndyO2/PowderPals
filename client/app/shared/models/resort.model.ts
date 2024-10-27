@@ -3,6 +3,7 @@ export class Resort {
   name?: string;
   city?: string;
   state?: string;
+  continent?: string;
   country?: string;
   address?: string;
   rating?: number;

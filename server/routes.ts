@@ -38,7 +38,18 @@ const setRoutes = (app: Application): void => {
   router.route('/post/:id').delete(postCtrl.delete);
 
   // Resorts
-  router.route('/resorts').get(resortCtrl.getAll);
+  router.route('/resorts').get((req, res) => {
+    const { name, city, state, country, rating } = req.query;
+    const filters: any = {};
+
+    if (name) filters.name = name;
+    if (city) filters.city = city;
+    if (state) filters.state = state;
+    if (country) filters.country = country;
+    if (rating) filters.rating = Number(rating);
+
+    resortCtrl.filterByAttributes(filters).then((resorts) => res.json(resorts));
+  });
   router.route('/resorts/count').get(resortCtrl.count);
   router.route('/resort').post(resortCtrl.insert);
   router.route('/resort/:id').get(resortCtrl.get);

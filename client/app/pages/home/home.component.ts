@@ -1,7 +1,21 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ResortsService } from 'client/app/services/resorts.service';
 import { Resort } from 'client/app/shared/models/resort.model';
+import { take } from 'rxjs';
+
+interface FiltersFormGroup {
+  name: FormControl<string | null>;
+  state: FormControl<string | null>;
+  continent: FormControl<string | null>;
+  country: FormControl<string | null>;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,71 +24,74 @@ import { Resort } from 'client/app/shared/models/resort.model';
 export class HomeComponent {
   resorts: Resort[] = [];
 
-  constructor(
-    private resortsService: ResortsService,
-    private matDialog: MatDialog
-  ) {
-    this.resortsService.getResorts().subscribe((resorts) => {
-      this.resorts = resorts;
+  filterFormGroup: FormGroup;
+
+  name = new FormControl('', Validators.required);
+  state = new FormControl('', Validators.required);
+  country = new FormControl('', Validators.required);
+
+  constructor(private resortsService: ResortsService, private fb: FormBuilder) {
+    this.filterFormGroup = this.fb.group<FiltersFormGroup>({
+      name: this.name,
+      state: this.state,
+      continent: this.country,
+      country: this.country,
     });
+
+    this.filterFormGroup.valueChanges.subscribe((filters) => {
+      this.filterResorts(filters);
+    });
+
+    this.getAllResorts();
   }
 
-  filterByContinent(value: Event) {
-    // TODO: Implement resort api to filter by continent
-    console.log(value);
-  }
-  filterByCountry(value: Event) {
-    // TODO: Implement resort api to filter by country
-    console.log(value);
-  }
-
-  filterByCity(value: Event) {
-    // TODO: Implement resort api to filter by city
-    console.log(value);
+  getAllResorts() {
+    this.resortsService
+      .getResorts()
+      .pipe(take(1))
+      .subscribe((resorts) => {
+        this.resorts = resorts;
+      });
   }
 
-  isChecked = false;
+  filterResorts(filters: any) {
+    console.log(filters);
 
-  // resorts = [
-  //   {
-  //     name: 'Brighton Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Alta Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Snowbird Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Deer Valley Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Solitude Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Brighton Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Brighton Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  //   {
-  //     name: 'Brighton Ski Resort',
-  //     description: 'Description 1',
-  //     image: '../../assets/download.jpeg',
-  //   },
-  // ];
+    const clearedFilters =
+      this.name.value === '' &&
+      this.state.value === '' &&
+      this.country.value === '';
+
+    if (clearedFilters) {
+      this.getAllResorts();
+      return;
+    }
+
+    // TODO: Filter precedence:
+    // 1) Name: Sorts Alphabetical order (A-Z)
+    // 2) Continent: Filters out resorts that don't match the continent
+    // 3) State: Filters out resorts that don't match the state
+
+    // Sort by Name (A-Z)
+    let filteredResorts = [...this.resorts].sort((a, b) =>
+      (a.name || '').localeCompare(b.name || '')
+    );
+
+    // Filter by Continent
+    if (this.country.value) {
+      filteredResorts = filteredResorts.filter(
+        (resort) => resort.continent === this.country.value
+      );
+    }
+
+    // Filter by State
+    if (this.state.value) {
+      filteredResorts = filteredResorts.filter(
+        (resort) => resort.state === this.state.value
+      );
+    }
+
+    this.resorts = filteredResorts;
+    console.log(this.resorts);
+  }
 }
