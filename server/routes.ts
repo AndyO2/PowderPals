@@ -39,11 +39,11 @@ const setRoutes = (app: Application): void => {
 
   // Resorts
   router.route('/resorts').get(resortCtrl.getAll);
-  // router.route('/resorts/count').get(resortCtrl.count);
+  router.route('/resorts/count').get(resortCtrl.count);
   router.route('/resort').post(resortCtrl.insert);
   router.route('/resort/:id').get(resortCtrl.get);
-  // router.route('/resort/:id').put(resortCtrl.update);
-  // router.route('/resort/:id').delete(resortCtrl.delete);
+  router.route('/resort/:id').put(resortCtrl.update);
+  router.route('/resort/:id').delete(resortCtrl.delete);
 
   // Test routes
   if (process.env.NODE_ENV === 'test') {

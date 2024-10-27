@@ -1,16 +1,11 @@
 <div class="container-fluid">
 
-  <div class="d-flex justify-content-end align-items-center my-3">
-    Not seeing your favorite resort?
-    <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#add-resort-modal">
-      Add a Resort!
-    </button>
-
+  <!-- <div class="d-flex justify-content-end align-items-center my-3">
     <div class="modal fade" id="add-resort-modal" tabindex="-1" aria-labelledby="add-resort-modal-label"
       aria-hidden="true">
       <app-add-resort-dialog></app-add-resort-dialog>
     </div>
-  </div>
+  </div> -->
 
   <div class="d-flex justify-content-start align-items-center my-3">
     <select class="form-select me-2" (change)="filterByContinent($event)" placeholder="Filter by Continent">
@@ -27,51 +22,60 @@
     <input type="text" placeholder="Filter by country" class="form-control me-2" (input)="filterByCountry($event)">
   </div>
 
+  <style>
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid black;
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
   <div class="row g-3">
     <div *ngFor="let resort of resorts" class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card shadow mx-1">
-        <img [src]="resort.image" alt="{{ resort.name }}">
-
-        <!-- Carousel -->
-        <!-- <div id="carousel-{{resort.id}}" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div *ngFor="let image of resort.images; let i = index"
-              [ngClass]="{'carousel-item': true, 'active': i === 0}">
-              <img [src]="image" class="d-block w-100" alt="{{ resort.name }}">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" attr.data-bs-target="#carousel-{{resort.id}}"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" attr.data-bs-target="#carousel-{{resort.id}}"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div> -->
+        <img [src]="'../../assets/download.jpeg'" alt="{{ resort.name }}" class="card-img-top">
 
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h6 class="card-title mb-0" style="font-size: 1rem;">{{resort.name}}</h6>
             <span class="d-flex align-items-center" style="font-size: 1rem;">
-              <i class="fa fa-star" style="color: gold;"></i>5
+              <i class="fa fa-star" style="color: gold;"></i>&nbsp;{{resort.rating}}
             </span>
           </div>
 
           <div class="d-flex justify-content-between">
-            <p class="card-text" style="font-size: 0.8rem;">Salt Lake City, UT</p>
+            <p class="card-text" style="font-size: 0.8rem;">{{resort.city}}, {{resort.state}}</p>
           </div>
 
+          <hr class="my-2">
+
           <div class="d-flex justify-content-between">
-            <span class="d-flex align-items-center" style="font-size: 0.8rem;">
-              <i class="fa fa-plane"></i>5 trips going here
+            <span class="d-flex align-items-center" style="font-size: 1rem;">
+              <i class="fa fa-plane"></i>&nbsp;5 trips going here
             </span>
           </div>
 
-          <button class="btn btn-primary">View Details</button>
+          <!-- <button class="btn btn-primary">View Details</button> -->
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row my-10">
+    <div class="d-flex justify-content-center align-items-center my-3">
+      Not seeing your favorite resort?
+      <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#add-resort-modal">
+        Add a Resort!
+      </button>
+
+      <div class="modal fade" id="add-resort-modal" tabindex="-1" aria-labelledby="add-resort-modal-label"
+        aria-hidden="true">
+        <app-add-resort-dialog></app-add-resort-dialog>
       </div>
     </div>
   </div>

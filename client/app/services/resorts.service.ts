@@ -15,6 +15,18 @@ export class ResortsService {
     return this.http.get<Resort>(`/api/resort/${resort._id}`);
   }
 
+  getResorts(): Observable<Resort[]> {
+    return this.http.get<Resort[]>('/api/resorts');
+  }
+
+  updateResort(resort: Resort): Observable<Resort> {
+    return this.http.put<Resort>(`/api/resort/${resort._id}`, resort);
+  }
+
+  deleteResort(resort: Resort): Observable<Resort> {
+    return this.http.delete<Resort>(`/api/resort/${resort._id}`);
+  }
+
   getGoogleResortInfo(query: string): Observable<any> {
     // https://places.googleapis.com/v1/places:BrightonResort
     console.log(query);
