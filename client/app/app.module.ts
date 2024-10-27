@@ -23,8 +23,6 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.component';
-import { AvatarComponent } from './avatar/avatar.component';
-import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AddResortFormComponent } from './add-resort-form/add-resort-form.component';
 // Mat Modules
@@ -75,8 +73,6 @@ const MAT_MODULES = [
     AdminComponent,
     NotFoundComponent,
     AddPostDialogComponent,
-    AvatarComponent,
-    ImageCropperComponent,
     NavbarComponent,
     AddResortFormComponent,
   ],
