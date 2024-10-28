@@ -26,7 +26,7 @@
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text" style="font-size: 1rem;">{{resort.city}}, {{resort.state}}</p>
+            <p class="card-text" style="font-size: 0.9rem;">{{resort.city}}, {{resort.state}}</p>
             <p [ngSwitch]="resort.country">
               <span *ngSwitchCase="countryEnum.US" style="font-size: 1.25rem; margin:0;">🇺🇸</span>
               <span *ngSwitchCase="countryEnum.CA" style="font-size: 1.25rem; margin:0;">🇨🇦</span>
@@ -37,9 +37,9 @@
             </p>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <p class="card-text" style="font-size: 1rem;">{{resort.country}}</p>
-          </div>
+          <!-- <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text" style="font-size: 0.9rem;">{{resort.country}}</p>
+          </div> -->
 
           <hr class="my-1">
 
