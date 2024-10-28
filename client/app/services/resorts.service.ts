@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Resort } from '../shared/models/resort.model';
 import { Observable } from 'rxjs';
+import { Country } from '../shared/models/country.enum';
 
 @Injectable()
 export class ResortsService {
@@ -29,18 +30,15 @@ export class ResortsService {
 
   filterResorts(filters: {
     name?: string;
-    city?: string;
-    state?: string;
-    country?: string;
-    rating?: number;
+    country?: Country;
+    continent?: string;
   }): Observable<Resort[]> {
     const params = new URLSearchParams();
     if (filters.name) params.append('name', filters.name);
-    if (filters.city) params.append('city', filters.city);
-    if (filters.state) params.append('state', filters.state);
     if (filters.country) params.append('country', filters.country);
-    if (filters.rating !== undefined)
-      params.append('rating', filters.rating.toString());
+    if (filters.continent) params.append('continent', filters.continent);
+
+    console.log(params.toString());
 
     return this.http.get<Resort[]>(`/api/resorts?${params.toString()}`);
   }

@@ -13,7 +13,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 // Components
 import { AppComponent } from './app.component';
-import { CatsComponent } from './cats/cats.component';
+import { ResortsComponent } from './resorts/resorts.component';
 import { AddCatFormComponent } from './add-cat-form/add-cat-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -63,7 +63,7 @@ const MAT_MODULES = [
 @NgModule({
   declarations: [
     AppComponent,
-    CatsComponent,
+    ResortsComponent,
     AddCatFormComponent,
     HomeComponent,
     RegisterComponent,

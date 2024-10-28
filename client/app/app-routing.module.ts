@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 // Components
-import { CatsComponent } from './cats/cats.component';
+import { ResortsComponent } from './resorts/resorts.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -17,7 +17,7 @@ import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'trips', component: CatsComponent },
+  { path: 'resorts', component: ResortsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },

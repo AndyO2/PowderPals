@@ -3,12 +3,10 @@ import { model, Schema } from 'mongoose';
 interface IResort {
   name: string;
   city: string;
+  address: string;
   state: string;
   country: string;
-  address: string;
   continent: string;
-  longitude: number;
-  latitude: number;
   rating: number;
   priceLevel: number;
 }
@@ -20,8 +18,6 @@ const resortSchema = new Schema<IResort>({
   country: String,
   address: String,
   continent: String,
-  longitude: Number,
-  latitude: Number,
   rating: Number,
   priceLevel: Number,
 });

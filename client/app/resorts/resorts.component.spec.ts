@@ -5,7 +5,7 @@ import { FormsModule, UntypedFormBuilder, ReactiveFormsModule } from '@angular/f
 
 import { ToastComponent } from '../shared/toast/toast.component';
 import { CatService } from '../services/cat.service';
-import { CatsComponent } from './cats.component';
+import { ResortsComponent } from './resorts.component';
 import { of, Observable } from 'rxjs';
 
 class CatServiceMock {
@@ -19,14 +19,14 @@ class CatServiceMock {
 }
 
 describe('Component: Cats', () => {
-  let component: CatsComponent;
-  let fixture: ComponentFixture<CatsComponent>;
+  let component: ResortsComponent;
+  let fixture: ComponentFixture<ResortsComponent>;
   let compiled: HTMLElement;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, FormsModule, ReactiveFormsModule ],
-      declarations: [ CatsComponent ],
+      declarations: [ ResortsComponent ],
       providers: [
         ToastComponent, UntypedFormBuilder,
         { provide: CatService, useClass: CatServiceMock }
@@ -37,7 +37,7 @@ describe('Component: Cats', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CatsComponent);
+    fixture = TestBed.createComponent(ResortsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     compiled = fixture.nativeElement as HTMLElement;

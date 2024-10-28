@@ -8,10 +8,10 @@ import {
 import { ResortsService } from 'client/app/services/resorts.service';
 import { Resort } from 'client/app/shared/models/resort.model';
 import { take } from 'rxjs';
+import { Country } from 'client/app/shared/models/country.enum';
 
 interface FiltersFormGroup {
   name: FormControl<string | null>;
-  state: FormControl<string | null>;
   continent: FormControl<string | null>;
   country: FormControl<string | null>;
 }
@@ -26,19 +26,21 @@ export class HomeComponent {
 
   filterFormGroup: FormGroup;
 
+  countryEnum = Country;
+
   name = new FormControl('', Validators.required);
-  state = new FormControl('', Validators.required);
-  country = new FormControl('', Validators.required);
+  continent = new FormControl<string>('', Validators.required);
+  country = new FormControl<Country>(Country.None, Validators.required);
 
   constructor(private resortsService: ResortsService, private fb: FormBuilder) {
     this.filterFormGroup = this.fb.group<FiltersFormGroup>({
       name: this.name,
-      state: this.state,
-      continent: this.country,
+      continent: this.continent,
       country: this.country,
     });
 
     this.filterFormGroup.valueChanges.subscribe((filters) => {
+      console.log(filters);
       this.filterResorts(filters);
     });
 
@@ -55,43 +57,21 @@ export class HomeComponent {
   }
 
   filterResorts(filters: any) {
-    console.log(filters);
-
     const clearedFilters =
       this.name.value === '' &&
-      this.state.value === '' &&
-      this.country.value === '';
+      this.continent.value === '' &&
+      this.country.value === Country.None;
 
     if (clearedFilters) {
       this.getAllResorts();
       return;
     }
 
-    // TODO: Filter precedence:
-    // 1) Name: Sorts Alphabetical order (A-Z)
-    // 2) Continent: Filters out resorts that don't match the continent
-    // 3) State: Filters out resorts that don't match the state
-
-    // Sort by Name (A-Z)
-    let filteredResorts = [...this.resorts].sort((a, b) =>
-      (a.name || '').localeCompare(b.name || '')
-    );
-
-    // Filter by Continent
-    if (this.country.value) {
-      filteredResorts = filteredResorts.filter(
-        (resort) => resort.continent === this.country.value
-      );
-    }
-
-    // Filter by State
-    if (this.state.value) {
-      filteredResorts = filteredResorts.filter(
-        (resort) => resort.state === this.state.value
-      );
-    }
-
-    this.resorts = filteredResorts;
-    console.log(this.resorts);
+    this.resortsService
+      .filterResorts(filters)
+      .pipe(take(1))
+      .subscribe((resorts) => {
+        this.resorts = resorts;
+      });
   }
 }

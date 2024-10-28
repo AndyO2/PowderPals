@@ -29,8 +29,12 @@
                 <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
                     <i class="fa fa-lock"></i> Admin
                 </a>
-                <a routerLink="/trips" class="nav-link" routerLinkActive="active">
-                    <i class="fa fa-plane"></i> My Trips
+                <a routerLink="/resorts" class="nav-link" routerLinkActive="active"
+                    *ngIf="auth.loggedIn && auth.isAdmin">
+                    <i class="fa fa-plane"></i> Resorts
+                </a>
+                <a routerLink="/resorts" class="nav-link" routerLinkActive="active">
+                    <i class="fa fa-plane"></i> My Trips (TO DO)
                 </a>
                 <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
                     <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
