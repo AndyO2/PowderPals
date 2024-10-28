@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastComponent } from '../shared/toast/toast.component';
-
+import { Country } from '../shared/models/country.enum';
 @Component({
   selector: 'app-add-resort-dialog',
   templateUrl: './add-resort-dialog.component.html',
@@ -22,7 +22,7 @@ export class AddResortDialogComponent implements AfterViewInit {
   name = new FormControl('', Validators.required);
   city = new FormControl('', Validators.required);
   state = new FormControl('', Validators.required);
-  country = new FormControl('', Validators.required);
+  country = new FormControl(Country.US, Validators.required);
   rating = new FormControl(0, Validators.required);
   address = new FormControl('', Validators.required);
 

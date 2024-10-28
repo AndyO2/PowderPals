@@ -40,7 +40,7 @@
       <tbody *ngIf="isEditing">
         <tr>
           <td colspan="4">
-            <form #form="ngForm" (ngSubmit)="editResort(resort)">
+            <form #form="ngForm">
               <div class="row row-cols-1 row-cols-sm-auto g-2">
                 <div class="col">
                   <input class="form-control" type="text" name="name" [(ngModel)]="resort.name" placeholder="Name"
@@ -54,16 +54,24 @@
                   <input class="form-control" type="text" name="state" [(ngModel)]="resort.state" placeholder="State"
                     required>
                 </div>
-                <div class="col d-flex align-items-center">
-                  <button class="btn btn-sm btn-primary me-2" type="submit" [disabled]="!form.form.valid">
-                    <i class="fa fa-floppy-o"></i> Save
-                  </button>
-                  <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
-                    <i class="fa fa-times"></i> Cancel
-                  </button>
+                <div class="col">
+                  <input class="form-control" type="text" name="country" [(ngModel)]="resort.country"
+                    placeholder="Country" required>
+                </div>
+                <div class="col">
+                  <input class="form-control" type="text" name="continent" [(ngModel)]="resort.continent"
+                    placeholder="Continent" required>
                 </div>
               </div>
             </form>
+            <div class="col d-flex align-items-center">
+              <button class="btn btn-sm btn-primary me-2" [disabled]="!form.form.valid" (click)="editResort(resort)">
+                <i class="fa fa-floppy-o"></i> Save
+              </button>
+              <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
+                <i class="fa fa-times"></i> Cancel
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

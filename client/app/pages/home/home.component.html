@@ -2,17 +2,13 @@
   <div class="row g-3">
     <form-group [formGroup]="filterFormGroup">
       <input type="text" placeholder="Filter by resort name" class="form-control me-2" formControlName="name">
-      <input type="text" placeholder="Filter by country" class="form-control me-2" formControlName="country">
-      <!-- <select class="form-select me-2" formControlName="continent" placeholder="Filter by Continent">
-        <option value="">Select Continent</option>
-        <option value="North America">North America</option>
-        <option value="South America">South America</option>
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="Africa">Africa</option>
-        <option value="Australia">Australia</option>
-        <option value="Antarctica">Antarctica</option>
-      </select> -->
+      <!-- <input type="text" placeholder="Filter by country" class="form-control me-2" formControlName="country"> -->
+      <select class="form-select me-2" formControlName="country" placeholder="Filter by Country">
+        <option value="">Select Country</option>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="Japan">Japan</option>
+      </select>
     </form-group>
   </div>
 
@@ -29,14 +25,23 @@
             </span>
           </div>
 
-          <div class="d-flex justify-content-between">
-            <p class="card-text" style="font-size: 0.8rem;">{{resort.city}}, {{resort.state}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text" style="font-size: 1rem;">{{resort.city}}, {{resort.state}}</p>
+            <p [ngSwitch]="resort.country">
+              <span *ngSwitchCase="countryEnum.US" style="font-size: 1.25rem; margin:0;">🇺🇸</span>
+              <span *ngSwitchCase="countryEnum.CA" style="font-size: 1.25rem; margin:0;">🇨🇦</span>
+              <span *ngSwitchCase="countryEnum.JPN" style="font-size: 1.25rem; margin:0;">🇯🇵</span>
+              <span *ngSwitchCase="countryEnum.CHN" style="font-size: 1.25rem; margin:0;">🇨🇳</span>
+              <span *ngSwitchCase="countryEnum.AUS" style="font-size: 1.25rem; margin:0;">🇦🇺</span>
+              <span *ngSwitchCase="countryEnum.NZL" style="font-size: 1.25rem; margin:0;">🇳🇿</span>
+            </p>
           </div>
-          <!-- 
-          <span class="fi fi-gr"></span> -->
 
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text" style="font-size: 1rem;">{{resort.country}}</p>
+          </div>
 
-          <hr class="my-2">
+          <hr class="my-1">
 
           <div class="d-flex justify-content-between">
             <span class="d-flex align-items-center" style="font-size: 1rem;">
@@ -48,8 +53,7 @@
     </div>
   </div>
 
-
-  <div class="row my-10">
+  <div class="row my-5">
     <div class="d-flex justify-content-center align-items-center my-3">
       Not seeing your favorite resort?
       <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#add-resort-modal">
