@@ -12,6 +12,10 @@ class ResortCtrl extends BaseCtrl<IResort> {
       throw new Error((err as Error).message);
     }
   };
+
+  
+
+  // resortGroups = await Group.find({ resort: resortId });
 }
 
 export default ResortCtrl;

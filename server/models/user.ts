@@ -1,5 +1,7 @@
 import { compare, genSalt, hash } from 'bcryptjs';
 import { model, Schema } from 'mongoose';
+import Group from './group';
+import Resort from './resort';
 
 interface IUser {
   username: string;
@@ -7,21 +9,31 @@ interface IUser {
   password: string;
   role: string;
   bio: string;
+  age: number;
   profilePictureURL: string;
+  experienceLevel: string;
+  groups: (typeof Group)[];
+  favoriteResorts: (typeof Resort)[];
   isModified(password: string): boolean;
   comparePassword(
     password: string,
     callback: (err: any, isMatch: boolean) => void
   ): boolean;
 }
-
-const userSchema = new Schema<IUser>({
-  email: { type: String, unique: true, lowercase: true, trim: true },
-  username: String,
-  password: String,
+const userSchema: Schema<IUser> = new Schema<IUser>({
+  username: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   role: String,
   bio: String,
+  age: { type: Number },
   profilePictureURL: String,
+  experienceLevel: {
+    type: String,
+    enum: ['Beginner', 'Intermediate', 'Advanced'],
+  },
+  groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
+  favoriteResorts: [{ type: Schema.Types.ObjectId, ref: 'Resort' }],
 });
 
 // Before saving the user, hash the password

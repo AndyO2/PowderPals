@@ -25,6 +25,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.component';
+import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
+import { GroupComponent } from './group/group.component';
 // Mat Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,6 +47,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ResortsService } from './services/resorts.service';
 // google
 import { GoogleMapsModule } from '@angular/google-maps';
+import { GroupService } from './services/group.service';
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -75,6 +78,8 @@ const MAT_MODULES = [
     AddPostDialogComponent,
     NavbarComponent,
     AddResortDialogComponent,
+    ResortDetailComponent,
+    GroupComponent,
   ],
   imports: [
     ...MAT_MODULES,
@@ -99,6 +104,7 @@ const MAT_MODULES = [
     UserService,
     PostService,
     ResortsService,
+    GroupService,
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
   ],

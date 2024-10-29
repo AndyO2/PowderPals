@@ -14,9 +14,11 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AddResortDialogComponent } from './add-resort-dialog/add-resort-dialog.component';
+import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'resort/:id', component: ResortDetailComponent }, 
   { path: 'resorts', component: ResortsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

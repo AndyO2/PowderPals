@@ -9,6 +9,7 @@ import { ResortsService } from 'client/app/services/resorts.service';
 import { Resort } from 'client/app/shared/models/resort.model';
 import { take } from 'rxjs';
 import { Country } from 'client/app/shared/models/country.enum';
+import { Router } from '@angular/router';
 
 interface FiltersFormGroup {
   name: FormControl<string | null>;
@@ -32,7 +33,11 @@ export class HomeComponent {
   continent = new FormControl<string>('', Validators.required);
   country = new FormControl<Country>(Country.None, Validators.required);
 
-  constructor(private resortsService: ResortsService, private fb: FormBuilder) {
+  constructor(
+    private resortsService: ResortsService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.filterFormGroup = this.fb.group<FiltersFormGroup>({
       name: this.name,
       continent: this.continent,
@@ -73,5 +78,10 @@ export class HomeComponent {
       .subscribe((resorts) => {
         this.resorts = resorts;
       });
+  }
+
+  onCardClick(resortId: string) {
+    console.log(resortId);
+    this.router.navigate(['/resort', resortId]);
   }
 }

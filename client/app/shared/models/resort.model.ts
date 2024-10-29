@@ -1,5 +1,4 @@
 import { Country } from './country.enum';
-
 export class Resort {
   _id?: string;
   name?: string;
