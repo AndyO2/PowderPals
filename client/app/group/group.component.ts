@@ -10,7 +10,7 @@ import { GroupService } from '../services/group.service';
 export class GroupComponent {
   @Input() group: Group = new Group();
 
-  constructor(private groupService: GroupService) {}  
+  constructor(private groupService: GroupService) {}
 
   joinGroup(group: any) {
     // Implement the joinGroup logic here or call a service

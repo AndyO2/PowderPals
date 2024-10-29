@@ -19,6 +19,9 @@ export class ResortDetailComponent implements OnInit {
   resort: Resort = new Resort();
   groups: Group[] = [];
 
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+
   createGroupName = '';
 
   isLoading = true;
@@ -58,9 +61,13 @@ export class ResortDetailComponent implements OnInit {
   }
 
   createGroup() {
-    // TODO: implement group service
     this.groupService
-      .addGroup({ name: this.createGroupName, resort: this.resort })
+      .addGroup({
+        name: this.createGroupName,
+        resort: this.resort,
+        startDate: this.startDate,
+        endDate: this.endDate,
+      } as Group)
       .subscribe({
         next: (group) => (this.groups = [...this.groups, group]),
         error: (error) => console.log(error),
@@ -73,6 +80,6 @@ export class ResortDetailComponent implements OnInit {
     this.groupService.joinGroup(group).subscribe({
       next: (group) => (this.groups = [...this.groups, group]),
       error: (error) => console.log(error),
-    }); 
+    });
   }
 }

@@ -8,7 +8,8 @@ interface IGroup {
   resort: typeof Resort;
   description: string;
   location: string;
-  date: Date;
+  startDate: Date;
+  endDate: Date;
   members: (typeof User)[];
   cost: number;
 }
@@ -17,7 +18,8 @@ const groupSchema = new Schema<IGroup>({
   name: { type: String, required: true },
   description: { type: String },
   location: { type: String },
-  date: { type: Date, required: true },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
   members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   resort: { type: Schema.Types.ObjectId, ref: 'Resort' },
   cost: { type: Number },

@@ -34,6 +34,8 @@ class UserCtrl extends BaseCtrl<IUser> {
     const groups = await this.model.findById(userId).populate('groups');
     return groups;
   };
+
+  // userFavorites = await User.findById(userId).populate('favoriteResorts');
 }
 
 export default UserCtrl;
