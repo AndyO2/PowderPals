@@ -46,6 +46,13 @@ const setRoutes = (app: Application): void => {
   router.route('/group/:id').get(groupCtrl.get);
   router.route('/group/:id').put(groupCtrl.update);
   router.route('/group/:id').delete(groupCtrl.delete);
+  router.route('/group/:groupID/join').post((req, res) => {
+    const { user } = req.body.user;
+    groupCtrl
+      .joinGroup(req.params.groupID, user)
+      .then((out) => res.json(out))
+      .catch((err) => res.status(500).json({ message: err.message }));
+  });
 
   // Resorts
   router.route('/resorts').get((req, res) => {

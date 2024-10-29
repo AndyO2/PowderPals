@@ -1,13 +1,20 @@
 import Group, { IGroup } from '../models/group';
 import BaseCtrl from './base';
+import { IUser } from '../models/user';
 
 class GroupCtrl extends BaseCtrl<IGroup> {
   model = Group;
 
-  joinGroup = async (group: IGroup) => {
+  joinGroup = async (groupId: string, user: IUser) => {
     try {
-      const newGroup = await this.model.create(group);
-      return newGroup;
+      // Find the group by ID and push the new user ID into the users array
+      const updatedGroup = await this.model.findByIdAndUpdate(
+        groupId,
+        { $addToSet: { users: user } }, // Ensures no duplicate users
+        { new: true } // Return the updated document
+      );
+
+      return updatedGroup;
     } catch (err) {
       throw new Error((err as Error).message);
     }

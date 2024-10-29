@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Group } from '../shared/models/group.model';
 import { GroupService } from '../services/group.service';
 
@@ -7,14 +7,13 @@ import { GroupService } from '../services/group.service';
   templateUrl: './group.component.html',
   styleUrl: './group.component.scss',
 })
-export class GroupComponent {
+export class GroupComponent implements OnInit {
   @Input() group: Group = new Group();
 
   constructor(private groupService: GroupService) {}
 
-  joinGroup(group: any) {
-    // Implement the joinGroup logic here or call a service
-    this.groupService.joinGroup(group).subscribe({
+  ngOnInit(): void {
+    this.groupService.getGroup(this.group).subscribe({
       next: (group) => (this.group = group),
       error: (error) => console.log(error),
     });

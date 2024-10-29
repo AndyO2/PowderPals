@@ -77,7 +77,7 @@ export class ResortDetailComponent implements OnInit {
   joinGroup(group: Group) {
     console.log('# joinGroup', group);
     // TODO: implement group service
-    this.groupService.joinGroup(group).subscribe({
+    this.groupService.joinGroup(group, this.user).subscribe({
       next: (group) => (this.groups = [...this.groups, group]),
       error: (error) => console.log(error),
     });

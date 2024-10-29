@@ -1,7 +1,7 @@
-<p>{{ group.name }}</p>
+<div>
+    <p>{{ group.name }}</p>
 
-<div *ngFor="let user of group.users">
-    <p>{{ user.username }}</p>
+    <div *ngFor="let user of group.users">
+        <p>{{ user.username }}</p>
+    </div>
 </div>
-
-<button class="btn btn-primary" (click)="joinGroup(group)">Join Group</button>
