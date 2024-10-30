@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ResortsService } from 'client/app/services/resorts.service';
-import { Resort } from 'client/app/shared/models/resort.model';
 import { ToastComponent } from 'client/app/shared/toast/toast.component';
 import { Group } from 'client/app/shared/models/group.model';
 import { AuthService } from 'client/app/services/auth.service';
 import { User } from 'client/app/shared/models/user.model';
 import { UserService } from 'client/app/services/user.service';
 import { GroupService } from 'client/app/services/group.service';
+
 @Component({
   selector: 'app-resort-detail',
   templateUrl: './resort-detail.component.html',
@@ -15,8 +14,7 @@ import { GroupService } from 'client/app/services/group.service';
 })
 export class ResortDetailComponent implements OnInit {
   user: User = new User();
-  resortId: string | undefined;
-  resort: Resort = new Resort();
+  resortID = '';
   groups: Group[] = [];
 
   startDate: Date = new Date();
@@ -27,7 +25,6 @@ export class ResortDetailComponent implements OnInit {
   isLoading = true;
 
   constructor(
-    private resortsService: ResortsService,
     public toast: ToastComponent,
     public auth: AuthService,
     private userService: UserService,
@@ -37,8 +34,10 @@ export class ResortDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.resortId = params['id'];
-      this.getResort();
+      if (params['id']) {
+        this.resortID = params['id'];
+        this.getGroupsForResortID(this.resortID);
+      }
     });
   }
 
@@ -50,33 +49,32 @@ export class ResortDetailComponent implements OnInit {
     });
   }
 
-  getResort() {
-    this.resortsService.getResort({ _id: this.resortId || '' }).subscribe({
-      next: (resort) => (this.resort = resort),
-      error: (error) => console.log(error),
-      complete: () => (this.isLoading = false),
-    });
-  }
-
   createGroup() {
     // TODO: implement group service
-    // this.groupService
-    //   .addGroup({
-    //     name: this.createGroupName,
-    //     resort: this.resort._id,
-    //     startDate: this.startDate,
-    //     endDate: this.endDate,
-    //   } as Group)
-    //   .subscribe({
-    //     next: (group) => {
-    //       this.groups.push(group);
-    //       console.log('GROUP CREATED SUCCESSFULLY');
-    //     },
-    //     error: (error) => {
-    //       console.log(error);
-    //       console.log('GROUP FAILED TO CREATE SUCCESSFULLY');
-    //     },
-    //   });
+    this.groupService
+      .addGroup({
+        name: this.createGroupName,
+        resortID: this.resortID,
+        startDate: this.startDate,
+        endDate: this.endDate,
+      } as Group)
+      .subscribe({
+        next: (group) => {
+          this.groups.push(group);
+          console.log('GROUP CREATED SUCCESSFULLY');
+        },
+        error: (error) => {
+          console.log(error);
+          console.log('GROUP FAILED TO CREATE SUCCESSFULLY');
+        },
+      });
+  }
+
+  getGroupsForResortID(resortID: string) {
+    this.groupService.getGroupsForResort(resortID).subscribe((groups) => {
+      console.log('# getGroupsForResortID', groups);
+      this.groups = groups;
+    });
   }
 
   joinGroup(group: Group) {

@@ -36,7 +36,8 @@ const setRoutes = (app: Application): void => {
   router.route('/group/:id').get(groupCtrl.get);
   router.route('/group/:id').put(groupCtrl.update);
   router.route('/group/:id').delete(groupCtrl.delete);
-  router.route('/groups/resort/:resortID').get(groupCtrl.findAllGroupsForResort);
+  // custom
+  router.route('/groups/resort/:resortID').get(groupCtrl.getGroupsForResort);
 
   // Resorts
   router.route('/resorts').get(resortCtrl.getAll);

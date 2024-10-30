@@ -4,12 +4,13 @@ import { Request, Response } from 'express';
 class GroupCtrl extends BaseCtrl<IGroup> {
   model = Group;
 
-  findAllGroupsForResort = async (req: Request, res: Response) => {
+  getGroupsForResort = async (req: Request, res: Response) => {
     try {
-      const output = await this.model.find({ resortID: req.params.resortID });
-      return res.status(200).json(output);
-    } catch (err) {
-      return res.status(400).json({ error: (err as Error).message });
+      const { resortID } = req.params;
+      const groups = await this.model.find({ resortID });
+      res.status(200).json(groups);
+    } catch (error) {
+      res.status(500).json(error);
     }
   };
 }

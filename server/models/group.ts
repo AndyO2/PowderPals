@@ -2,9 +2,10 @@ import { model, Schema } from 'mongoose';
 
 interface IGroup {
   name: string;
-  organizerUserID: Schema.Types.ObjectId;
   startDate: Date;
   endDate: Date;
+  //
+  organizerUserID: Schema.Types.ObjectId;
   members: Schema.Types.ObjectId[];
   resortID: Schema.Types.ObjectId;
 }
