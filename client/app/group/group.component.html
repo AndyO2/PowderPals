@@ -1,5 +1,7 @@
-<div>
-    <p>{{ group.name }}</p>
+<div class="card">
+    <h6>{{ group.name }}</h6>
+    <h6>Going To {{ group.resort?.name }}</h6>
+    <p>{{ group.startDate | date: 'MM/dd/yyyy' }} - {{ group.endDate | date: 'MM/dd/yyyy' }}</p>
 
     <div *ngFor="let user of group.users">
         <p>{{ user.username }}</p>

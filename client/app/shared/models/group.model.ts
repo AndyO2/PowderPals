@@ -5,4 +5,6 @@ export class Group {
   name?: string;
   resort?: Resort;
   users?: User[];
+  startDate?: Date;
+  endDate?: Date;
 }
