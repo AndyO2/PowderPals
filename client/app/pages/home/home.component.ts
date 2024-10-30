@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -22,7 +22,7 @@ interface FiltersFormGroup {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   resorts: Resort[] = [];
 
   filterFormGroup: FormGroup;
@@ -43,13 +43,14 @@ export class HomeComponent {
       continent: this.continent,
       country: this.country,
     });
+  }
 
+  ngOnInit(): void {
+    this.getAllResorts();
     this.filterFormGroup.valueChanges.subscribe((filters) => {
       console.log(filters);
-      this.filterResorts(filters);
+      // this.filterResorts(filters);
     });
-
-    this.getAllResorts();
   }
 
   getAllResorts() {
@@ -57,6 +58,7 @@ export class HomeComponent {
       .getResorts()
       .pipe(take(1))
       .subscribe((resorts) => {
+        console.log('calling get resorts');
         this.resorts = resorts;
       });
   }

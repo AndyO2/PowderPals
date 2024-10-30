@@ -2,7 +2,7 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
-<div class="card mb-3" *ngIf="!isLoading">
+<div class="card mb-3">
   <h4 class="card-header">Current Resorts ({{resorts.length}})</h4>
   <div class="card-body">
     <table class="table table-bordered">
@@ -64,16 +64,16 @@
                 </div>
               </div>
             </form>
-            <div class="col d-flex align-items-center">
-              <button class="btn btn-sm btn-primary me-2" [disabled]="!form.form.valid" (click)="editResort(resort)">
-                <i class="fa fa-floppy-o"></i> Save
-              </button>
-              <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
-                <i class="fa fa-times"></i> Cancel
-              </button>
-            </div>
           </td>
         </tr>
+        <div class="col d-flex align-items-center">
+          <button class="btn btn-sm btn-primary me-2" [disabled]="!form.form.valid" (click)="editResort(resort)">
+            <i class="fa fa-floppy-o"></i> Save
+          </button>
+          <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
+            <i class="fa fa-times"></i> Cancel
+          </button>
+        </div>
       </tbody>
     </table>
   </div>

@@ -27,18 +27,16 @@ export class ResortDetailComponent implements OnInit {
   isLoading = true;
 
   constructor(
-    private route: ActivatedRoute,
     private resortsService: ResortsService,
     public toast: ToastComponent,
     public auth: AuthService,
     private userService: UserService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.getUser();
-
-    this.route.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe((params) => {
       this.resortId = params['id'];
       this.getResort();
     });
@@ -61,25 +59,35 @@ export class ResortDetailComponent implements OnInit {
   }
 
   createGroup() {
-    this.groupService
-      .addGroup({
-        name: this.createGroupName,
-        resort: this.resort,
-        startDate: this.startDate,
-        endDate: this.endDate,
-      } as Group)
-      .subscribe({
-        next: (group) => (this.groups = [...this.groups, group]),
-        error: (error) => console.log(error),
-      });
+    // TODO: implement group service
+    // this.groupService
+    //   .addGroup({
+    //     name: this.createGroupName,
+    //     resort: this.resort._id,
+    //     startDate: this.startDate,
+    //     endDate: this.endDate,
+    //   } as Group)
+    //   .subscribe({
+    //     next: (group) => {
+    //       this.groups.push(group);
+    //       console.log('GROUP CREATED SUCCESSFULLY');
+    //     },
+    //     error: (error) => {
+    //       console.log(error);
+    //       console.log('GROUP FAILED TO CREATE SUCCESSFULLY');
+    //     },
+    //   });
   }
 
   joinGroup(group: Group) {
     console.log('# joinGroup', group);
-    // TODO: implement group service
-    this.groupService.joinGroup(group, this.user).subscribe({
-      next: (group) => (this.groups = [...this.groups, group]),
-      error: (error) => console.log(error),
-    });
+    // // TODO: implement group service
+    // this.groupService.joinGroup(group, this.user).subscribe({
+    //   next: (group) => {
+    //     this.groups.push(group);
+    //     console.log('GROUP JOINED!');
+    //   },
+    //   error: (error) => console.log(error),
+    // });
   }
 }

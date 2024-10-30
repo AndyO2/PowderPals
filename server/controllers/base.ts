@@ -2,8 +2,7 @@ import { Request, Response } from 'express';
 import { Model } from 'mongoose';
 
 abstract class BaseCtrl<T> {
-
-  abstract model:Model<T>
+  abstract model: Model<T>;
 
   // Get all
   getAll = async (req: Request, res: Response) => {

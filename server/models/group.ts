@@ -1,28 +1,21 @@
 import { model, Schema } from 'mongoose';
-import User from './user';
-import Resort from './resort';
 
 interface IGroup {
-  users: (typeof User)[];
   name: string;
-  resort: typeof Resort;
-  description: string;
-  location: string;
+  organizerUserID: Schema.Types.ObjectId;
   startDate: Date;
   endDate: Date;
-  members: (typeof User)[];
-  cost: number;
+  members: Schema.Types.ObjectId[];
+  resortID: Schema.Types.ObjectId;
 }
 
 const groupSchema = new Schema<IGroup>({
   name: { type: String, required: true },
-  description: { type: String },
-  location: { type: String },
+  organizerUserID: { type: Schema.Types.ObjectId, ref: 'User' },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  resort: { type: Schema.Types.ObjectId, ref: 'Resort' },
-  cost: { type: Number },
+  resortID: { type: Schema.Types.ObjectId, ref: 'Resort' },
 });
 
 const Group = model<IGroup>('Group', groupSchema);

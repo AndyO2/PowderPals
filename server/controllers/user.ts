@@ -29,13 +29,6 @@ class UserCtrl extends BaseCtrl<IUser> {
       return res.status(400).json({ error: (err as Error).message });
     }
   };
-
-  getAllUserGroups = async (userId: string) => {
-    const groups = await this.model.findById(userId).populate('groups');
-    return groups;
-  };
-
-  // userFavorites = await User.findById(userId).populate('favoriteResorts');
 }
 
 export default UserCtrl;

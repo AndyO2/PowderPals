@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <div class="row g-3">
+    <div>uncomment code in home component.ts for filters to work</div>
     <form-group [formGroup]="filterFormGroup">
       <input type="text" placeholder="Filter by resort name" class="form-control me-2" formControlName="name">
       <!-- <input type="text" placeholder="Filter by country" class="form-control me-2" formControlName="country"> -->
@@ -18,7 +19,7 @@
         (keydown.enter)="onCardClick(resort._id || '')">
         <img [src]="'../../assets/download.jpeg'" alt="{{ resort.name }}" class="card-img-top">
 
-        
+
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h6 class="card-title mb-0" style="font-size: 1rem;">{{resort.name}}</h6>
@@ -43,9 +44,17 @@
 
           <div class="d-flex justify-content-between">
             <span class="d-flex align-items-center" style="font-size: 1rem;">
-              <i class="fa fa-plane"></i>&nbsp;5 trips going here
+              <i class="fa fa-users"></i>&nbsp;5 trips going here
             </span>
           </div>
+
+          <div class="d-flex justify-content-between">
+            <span class="d-flex align-items-center" style="font-size: 1rem; margin:0;">
+              ⛷️&nbsp;30 PowderPals going here
+            </span>
+          </div>
+
+
         </div>
       </div>
     </div>

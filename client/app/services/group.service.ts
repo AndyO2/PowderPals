@@ -42,4 +42,8 @@ export class GroupService {
       responseType: 'text',
     });
   }
+
+  getGroupsForResort(resortID: string): Observable<Group[]> {
+    return this.http.get<Group[]>(`/api/groups/resort/${resortID}`);
+  }
 }

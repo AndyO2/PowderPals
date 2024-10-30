@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
+            <img src="../../../assets/favicon.ico" alt="Logo" width="30" height="24"
+                class="d-inline-block align-text-top">
             PowderPals
         </a>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbar-supported-content" aria-controls="navbar-supported-content" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -12,7 +13,7 @@
 
         <div class="collapse navbar-collapse" id="navbar-supported-content">
             <div class="navbar-nav me-auto">
-                <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                <a href="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                     <i class="fa fa-calendar-plus-o"></i> Start a Trip
                 </a>
                 <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
@@ -29,13 +30,13 @@
                 <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">
                     <i class="fa fa-lock"></i> Admin
                 </a>
-                <a routerLink="/resorts" class="nav-link" routerLinkActive="active"
+                <!-- <a routerLink="/resorts" class="nav-link" routerLinkActive="active"
                     *ngIf="auth.loggedIn && auth.isAdmin">
                     <i class="fa fa-plane"></i> Resorts
-                </a>
-                <a routerLink="/resorts" class="nav-link" routerLinkActive="active">
+                </a> -->
+                <!-- <a routerLink="/resorts" class="nav-link" routerLinkActive="active">
                     <i class="fa fa-plane"></i> My Trips (TO DO)
-                </a>
+                </a> -->
                 <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
                     <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
                 </a>

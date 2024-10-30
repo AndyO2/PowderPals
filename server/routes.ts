@@ -2,7 +2,6 @@ import { Router, Application } from 'express';
 
 import CatCtrl from './controllers/cat';
 import UserCtrl from './controllers/user';
-import PostCtrl from './controllers/post';
 import ResortCtrl from './controllers/resort';
 import GroupCtrl from './controllers/group';
 
@@ -10,7 +9,6 @@ const setRoutes = (app: Application): void => {
   const router = Router();
   const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
-  const postCtrl = new PostCtrl();
   const resortCtrl = new ResortCtrl();
   const groupCtrl = new GroupCtrl();
 
@@ -31,14 +29,6 @@ const setRoutes = (app: Application): void => {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
-  // Posts (deprecated)
-  router.route('/posts').get(postCtrl.getAll);
-  router.route('/posts/count').get(postCtrl.count);
-  router.route('/post').post(postCtrl.insert);
-  router.route('/post/:id').get(postCtrl.get);
-  router.route('/post/:id').put(postCtrl.update);
-  router.route('/post/:id').delete(postCtrl.delete);
-
   // Groups
   router.route('/groups').get(groupCtrl.getAll);
   router.route('/groups/count').get(groupCtrl.count);
@@ -46,27 +36,10 @@ const setRoutes = (app: Application): void => {
   router.route('/group/:id').get(groupCtrl.get);
   router.route('/group/:id').put(groupCtrl.update);
   router.route('/group/:id').delete(groupCtrl.delete);
-  router.route('/group/:groupID/join').post((req, res) => {
-    const { user } = req.body.user;
-    groupCtrl
-      .joinGroup(req.params.groupID, user)
-      .then((out) => res.json(out))
-      .catch((err) => res.status(500).json({ message: err.message }));
-  });
+  router.route('/groups/resort/:resortID').get(groupCtrl.findAllGroupsForResort);
 
   // Resorts
-  router.route('/resorts').get((req, res) => {
-    const { name, city, state, country, rating } = req.query;
-    const filters: any = {};
-
-    if (name) filters.name = name;
-    if (city) filters.city = city;
-    if (state) filters.state = state;
-    if (country) filters.country = country;
-    if (rating) filters.rating = Number(rating);
-
-    resortCtrl.filterByAttributes(filters).then((resorts) => res.json(resorts));
-  });
+  router.route('/resorts').get(resortCtrl.getAll);
   router.route('/resorts/count').get(resortCtrl.count);
   router.route('/resort').post(resortCtrl.insert);
   router.route('/resort/:id').get(resortCtrl.get);

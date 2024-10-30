@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { ResortsService } from '../services/resorts.service';
 import { Resort } from '../shared/models/resort.model';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-resorts',
@@ -24,11 +25,13 @@ export class ResortsComponent implements OnInit {
   }
 
   getResorts(): void {
-    this.resortsService.getResorts().subscribe({
-      next: (data) => (this.resorts = data),
-      error: (error) => console.log(error),
-      complete: () => (this.isLoading = false),
-    });
+    this.resortsService
+      .getResorts()
+      .pipe(take(1))
+      .subscribe((resorts) => {
+        console.log('calling get resorts');
+        this.resorts = resorts;
+      });
   }
 
   enableEditing(resort: Resort): void {
@@ -41,7 +44,7 @@ export class ResortsComponent implements OnInit {
     this.resort = new Resort();
     this.toast.setMessage('Item editing cancelled.', 'warning');
     // reload the cats to reset the editing
-    this.getResorts();
+    // this.getResorts();
   }
 
   editResort(resort: Resort): void {

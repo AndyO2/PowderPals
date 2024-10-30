@@ -8,7 +8,6 @@ import { SharedModule } from './shared/shared.module';
 import { CatService } from './services/cat.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { PostService } from './services/post.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 // Components
@@ -102,7 +101,6 @@ const MAT_MODULES = [
     AuthGuardAdmin,
     CatService,
     UserService,
-    PostService,
     ResortsService,
     GroupService,
     provideAnimationsAsync(),
