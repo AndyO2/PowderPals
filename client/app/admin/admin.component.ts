@@ -7,16 +7,17 @@ import { User } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html'
+  templateUrl: './admin.component.html',
 })
 export class AdminComponent implements OnInit {
-
   users: User[] = [];
   isLoading = true;
 
-  constructor(public auth: AuthService,
-              public toast: ToastComponent,
-              private userService: UserService) { }
+  constructor(
+    public auth: AuthService,
+    public toast: ToastComponent,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -24,20 +25,22 @@ export class AdminComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getUsers().subscribe({
-      next: data => this.users = data,
-      error: error => console.log(error),
-      complete: () => this.isLoading = false
+      next: (data) => (this.users = data),
+      error: (error) => console.log(error),
+      complete: () => (this.isLoading = false),
     });
   }
 
   deleteUser(user: User): void {
-    if (window.confirm('Are you sure you want to delete ' + user.username + '?')) {
+    if (
+      window.confirm('Are you sure you want to delete ' + user.username + '?')
+    ) {
       this.userService.deleteUser(user).subscribe({
-        next: () => this.toast.setMessage('User deleted successfully.', 'success'),
-        error: error => console.log(error),
-        complete: () => this.getUsers()
+        next: () =>
+          this.toast.setMessage('User deleted successfully.', 'success'),
+        error: (error) => console.log(error),
+        complete: () => this.getUsers(),
       });
     }
   }
-
 }

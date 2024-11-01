@@ -47,6 +47,7 @@ import { ResortsService } from './services/resorts.service';
 // google
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GroupService } from './services/group.service';
+import { CreateGroupPageComponent } from './group/create-group-page/create-group-page.component';
 
 const MAT_MODULES = [
   MatButtonModule,
@@ -79,6 +80,7 @@ const MAT_MODULES = [
     AddResortDialogComponent,
     ResortDetailComponent,
     GroupComponent,
+    CreateGroupPageComponent,
   ],
   imports: [
     ...MAT_MODULES,
@@ -91,7 +93,7 @@ const MAT_MODULES = [
     JwtModule.forRoot({
       config: {
         tokenGetter: (): string | null => localStorage.getItem('token'),
-        // allowedDomains: ['localhost:3000', 'localhost:4200']
+        allowedDomains: ['localhost:3000', 'localhost:4200'],
       },
     }),
   ],

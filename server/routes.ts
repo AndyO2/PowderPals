@@ -38,6 +38,7 @@ const setRoutes = (app: Application): void => {
   router.route('/group/:id').delete(groupCtrl.delete);
   // custom
   router.route('/groups/resort/:resortID').get(groupCtrl.getGroupsForResort);
+  router.route('/groups/:id/join').put(groupCtrl.joinGroup);
 
   // Resorts
   router.route('/resorts').get(resortCtrl.getAll);

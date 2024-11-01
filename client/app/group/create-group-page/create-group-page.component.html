@@ -1,0 +1,36 @@
+<div class="d-flex">
+    <div>
+        <input type="text" [(ngModel)]="createGroupName" placeholder="Enter group name" />
+
+        <div class="form-group">
+            <label for="groupDescription">Group Description:</label>
+            <textarea id="groupDescription" class="form-control" [(ngModel)]="groupDescription"
+                placeholder="Describe your group"></textarea>
+        </div>
+
+        <div class="date-inputs">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="start-date" class="form-control" [(ngModel)]="startDate">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="end-date" class="form-control" [(ngModel)]="endDate">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="privacy">Privacy:</label>
+            <select id="privacy" class="form-control" [(ngModel)]="privacySetting">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" (click)="createGroup()">Create Group</button>
+    </div>
+
+    <div>
+        <!-- Additional content can go here -->
+    </div>
+</div>

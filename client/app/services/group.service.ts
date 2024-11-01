@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Group } from '../shared/models/group.model';
-import { User } from '../shared/models/user.model';
 
 @Injectable()
 export class GroupService {
@@ -25,12 +24,6 @@ export class GroupService {
     return this.http.get<Group>(`/api/group/${group._id}`);
   }
 
-  joinGroup(group: Group, user: User): Observable<Group> {
-    return this.http.post<Group>(`/api/group/${group._id}/join`, {
-      user,
-    });
-  }
-
   editGroup(group: Group): Observable<string> {
     return this.http.put(`/api/group/${group._id}`, group, {
       responseType: 'text',
@@ -43,7 +36,14 @@ export class GroupService {
     });
   }
 
+  // Custom
   getGroupsForResort(resortID: string): Observable<Group[]> {
     return this.http.get<Group[]>(`/api/groups/resort/${resortID}`);
+  }
+
+  joinGroup(group: string, userID: string): Observable<Group> {
+    return this.http.put<Group>(`/api/groups/${group}/join`, {
+      userID,
+    });
   }
 }

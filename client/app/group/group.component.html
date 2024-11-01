@@ -1,9 +1,15 @@
-<div class="card">
-    <h6>{{ group.name }}</h6>
-    <h6>Going To {{ group.resort?.name }}</h6>
-    <p>{{ group.startDate | date: 'MM/dd/yyyy' }} - {{ group.endDate | date: 'MM/dd/yyyy' }}</p>
+<div class="card d-flex align-items-center justify-content-between" style="flex-direction: row;">
+    <div class="d-flex" style="flex-direction: column;">
+        <h6>{{ group.name }}</h6>
+        <p>{{ group.startDate | date: 'MM/dd/yyyy' }} - {{ group.endDate | date: 'MM/dd/yyyy' }}</p>
 
-    <div *ngFor="let user of group.users">
-        <p>{{ user.username }}</p>
+        <div *ngFor="let user of group.users">
+            <p>{{ user.username }}</p>
+        </div>
+    </div>
+
+    <div class="join-group-btn">
+        <button type="button" class="btn btn-info" (click)="joinGroup()">Join Group</button>
+        <button type="button" class="btn">TODO: Leave Group If User is In It</button>
     </div>
 </div>
