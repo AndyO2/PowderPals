@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'client/app/services/auth.service';
 import { GroupService } from 'client/app/services/group.service';
 import { Group } from 'client/app/shared/models/group.model';
@@ -9,22 +10,30 @@ import { ToastComponent } from 'client/app/shared/toast/toast.component';
   templateUrl: './create-group-page.component.html',
   styleUrl: './create-group-page.component.scss',
 })
-export class CreateGroupPageComponent {
+export class CreateGroupPageComponent implements OnInit {
+  resortID = '';
+  createGroupName = '';
+  groupDescription = '';
   startDate: Date = new Date();
   endDate: Date = new Date();
-
-  resortID = '';
-  groups: Group[] = [];
-  groupDescription = '';
-  privacySetting = '';
-
-  createGroupName = '';
+  privacySetting = 'public';
 
   constructor(
     public toast: ToastComponent,
     private authService: AuthService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['resortID']) {
+        this.resortID = params['resortID'];
+      }
+    });
+  }
+
   createGroup() {
     this.groupService
       .addGroup({
@@ -33,15 +42,17 @@ export class CreateGroupPageComponent {
         startDate: this.startDate,
         endDate: this.endDate,
         users: [this.authService.currentUser],
+        description: this.groupDescription,
+        privacy: this.privacySetting,
       } as Group)
       .subscribe({
-        next: (group) => {
-          this.groups.push(group);
-          console.log('GROUP CREATED SUCCESSFULLY');
+        next: () => {
+          this.toast.setMessage('Group Created Successfully', 'success');
+          this.router.navigate(['/resort', this.resortID]);
         },
         error: (error) => {
           console.log(error);
-          console.log('GROUP FAILED TO CREATE SUCCESSFULLY');
+          this.toast.setMessage('Something went wrong.', 'danger');
         },
       });
   }

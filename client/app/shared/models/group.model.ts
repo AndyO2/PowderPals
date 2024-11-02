@@ -7,4 +7,6 @@ export class Group {
   users?: User[];
   startDate?: Date;
   endDate?: Date;
+  description?: string;
+  privacy?: string;
 }

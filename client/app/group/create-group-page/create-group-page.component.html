@@ -1,6 +1,6 @@
-<div class="d-flex">
-    <div>
-        <input type="text" [(ngModel)]="createGroupName" placeholder="Enter group name" />
+<div class="container-fluid d-flex flex-row">
+    <div class="container-fluid">
+        <input type=" text" [(ngModel)]="createGroupName" placeholder="Enter group name" />
 
         <div class="form-group">
             <label for="groupDescription">Group Description:</label>
@@ -30,7 +30,17 @@
         <button class="btn btn-primary" (click)="createGroup()">Create Group</button>
     </div>
 
-    <div>
+    <div
+        class="container-fluid bg-primary-subtle border border-primary-subtle rounded-3 d-flex flex-column text-center">
+        <div>
+            <h1>{{createGroupName}}</h1>
+        </div>
+        <div>
+            <p>{{groupDescription}}</p>
+        </div>
+        <div>
+            <h2>{{ startDate | date:'MMMM d' }} - {{ endDate | date:'MMMM d' }}</h2>
+        </div>
         <!-- Additional content can go here -->
     </div>
 </div>

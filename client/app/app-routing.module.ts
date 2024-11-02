@@ -18,7 +18,7 @@ import { CreateGroupPageComponent } from './group/create-group-page/create-group
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'create-group', component: CreateGroupPageComponent },
+  { path: 'create-group/:resortID', component: CreateGroupPageComponent },
   { path: 'resort/:id', component: ResortDetailComponent },
   { path: 'resorts', component: ResortsComponent },
   { path: 'register', component: RegisterComponent },
