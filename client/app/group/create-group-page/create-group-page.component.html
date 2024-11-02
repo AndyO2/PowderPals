@@ -1,53 +1,75 @@
-<h2 mat-dialog-title>Create a Group</h2>
-<mat-dialog-content>
-    <div class="d-flex flex-row">
-        <div style="width: 30%; margin-right: 2rem;">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" [(ngModel)]="createGroupName"
-                    placeholder="Enter group name">
-            </div>
+<div class="dialog-header" mat-dialog-title>
+    <div style="font-size: 40px;">
+        Create a Group
+    </div>
+    <button mat-mini-fab style="margin-left: auto;" color="primary" (click)="dialogRef.close('closed')">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
 
-            <div class="form-group">
-                <label for="groupDescription">Group Description:</label>
-                <textarea id="groupDescription" class="form-control" [(ngModel)]="groupDescription"
-                    placeholder="Describe your group"></textarea>
-            </div>
-
-            <div class="date-inputs">
-                <div class="form-group">
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="start-date" class="form-control" [(ngModel)]="startDate">
-                </div>
-                <div class="form-group">
-                    <label for="endDate">End Date:</label>
-                    <input type="date" id="end-date" class="form-control" [(ngModel)]="endDate">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="privacy">Privacy:</label>
-                <select id="privacy" class="form-control" [(ngModel)]="privacySetting">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select>
-            </div>
-
-            <button class="btn btn-primary" (click)="createGroup()">Create Group</button>
+<mat-dialog-content style="display: flex; height: 100%; padding: 0; flex: 1; margin: 0;">
+    <div class="form-container">
+        <div>
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="createGroupName"
+                placeholder="Enter group name">
         </div>
 
-        <div class="bg-primary-subtle border border-primary-subtle rounded-3 d-flex flex-column text-center"
-            style="width: 70%;">
-            <div>
-                <h1>{{createGroupName}}</h1>
+        <div>
+            <label for="groupDescription">Group Description:</label>
+            <textarea id="groupDescription" class="form-control" [(ngModel)]="groupDescription"
+                placeholder="Describe your group"></textarea>
+        </div>
+
+        <div class="date-inputs">
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="start-date" class="form-control" [(ngModel)]="startDate">
             </div>
             <div>
-                <p>{{groupDescription}}</p>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="end-date" class="form-control" [(ngModel)]="endDate">
+            </div>
+        </div>
+
+        <div>
+            <label for="privacy">Privacy:</label>
+            <select id="privacy" class="form-control" [(ngModel)]="privacySetting">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+        </div>
+
+        <div style="margin-top: auto">
+            <button class="btn btn-primary" style="width: 100%;" (click)="createGroup()">Create
+                Group
+            </button>
+        </div>
+    </div>
+
+    <div class="preview-container">
+        <div class="centered-content">
+            <div>
+                <h1>{{createGroupName || 'Group Name'}}</h1>
+            </div>
+            <div>
+                <p *ngIf="groupDescription">{{groupDescription}}</p>
+                <p *ngIf="!groupDescription">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis vitae neque nec
+                    scelerisque.
+                    Morbi ut diam et
+                    lectus molestie condimentum. Aenean porta sollicitudin nulla ac convallis. Donec laoreet finibus
+                    augue, ut viverra diam
+                    pretium id. Fusce dui odio, fermentum nec blandit at, lobortis porta nibh. Curabitur vitae
+                    tempor
+                    eros. Donec faucibus
+                    ante id porttitor mollis. Nunc in erat ante. Duis bibendum quam et nisi bibendum, id dapibus ex
+                    laoreet.
+                </p>
             </div>
             <div>
                 <h2>{{ startDate | date:'MMMM d' }} - {{ endDate | date:'MMMM d' }}</h2>
             </div>
-            <!-- Additional content can go here -->
         </div>
     </div>
 </mat-dialog-content>

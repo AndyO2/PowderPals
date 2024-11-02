@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'client/app/services/auth.service';
 import { GroupService } from 'client/app/services/group.service';
@@ -9,6 +9,7 @@ import { ToastComponent } from 'client/app/shared/toast/toast.component';
   selector: 'app-create-group-page',
   templateUrl: './create-group-page.component.html',
   styleUrl: './create-group-page.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class CreateGroupPageComponent {
   createGroupName = '';

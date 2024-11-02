@@ -38,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -61,6 +62,8 @@ const MAT_MODULES = [
   MatToolbarModule,
   MatSlideToggleModule,
   MatDividerModule,
+  MatProgressSpinnerModule,
+  MatIconModule,
 ];
 
 @NgModule({

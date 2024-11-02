@@ -1,0 +1,48 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 24px;
+}
+
+.dialog-content {
+  display: flex;
+  height: 100%; /* Take up full height of dialog */
+  padding: 0; /* Remove any padding around content */
+  flex: 1;
+}
+
+.form-container {
+  width: 30%; /* Fixed width for form section */
+  padding: 1rem; /* Optional padding */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between;
+  height: 100%; /* Full height */
+  border-right: 1px solid #ccc; /* Optional border for separation */
+}
+
+.preview-container {
+  display: flex;
+  height: 100%;
+  width: 70%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* Optional padding */
+  background-color: rgb(91, 83, 83);
+}
+
+.centered-content {
+  text-align: center; /* Center text content */
+  background-color: lightblue;
+  height: 100%;
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);
+}
+
+.mat-mdc-dialog-inner-container {
+  height: auto;
+}

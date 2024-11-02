@@ -43,7 +43,6 @@ export class ResortDetailComponent implements OnInit {
     this.userService.getUser(this.auth.currentUser).subscribe({
       next: (data) => (this.user = data),
       error: (error) => console.log(error),
-      complete: () => (this.isLoading = false),
     });
   }
 
@@ -51,13 +50,18 @@ export class ResortDetailComponent implements OnInit {
     this.groupService.getGroupsForResort(resortID).subscribe((groups) => {
       console.log('# getGroupsForResortID', groups);
       this.groups = groups;
+      this.isLoading = false;
     });
   }
 
   onCreateGroupClicked(): void {
     this.matDialog
       .open(CreateGroupPageComponent, {
-        width: '800px',
+        // height: 'calc(100% - 30px)',
+        // width: 'calc(100% - 30px)',
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        panelClass: 'full-height-dialog',
         data: {
           resortID: this.resortID,
         },
@@ -66,9 +70,6 @@ export class ResortDetailComponent implements OnInit {
       .subscribe((out) => {
         this.getGroupsForResortID(this.resortID);
         console.log(out);
-        if (out.success) {
-          console.log('success');
-        }
       });
   }
 }

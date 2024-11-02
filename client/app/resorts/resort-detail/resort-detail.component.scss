@@ -1,0 +1,21 @@
+// ::ng-deep .full-height-dialog .mat-dialog-container {
+//   height: 100vh !important; /* Ensures the dialog container is full viewport height */
+//   display: flex;
+//   flex-direction: column;
+//   padding: 0; /* Remove padding to avoid extra spacing issues */
+// }
+
+.mat-dialog-container {
+  height: 100vh !important;
+  width: 100vw !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+mat-dialog-content {
+  flex: 1; /* Takes all available vertical space in the container */
+  display: flex;
+  padding: 0; /* Remove padding for exact fit */
+  height: 100%; /* Ensure full height of the dialog container */
+}
