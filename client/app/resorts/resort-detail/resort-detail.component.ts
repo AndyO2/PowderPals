@@ -6,6 +6,8 @@ import { AuthService } from 'client/app/services/auth.service';
 import { User } from 'client/app/shared/models/user.model';
 import { UserService } from 'client/app/services/user.service';
 import { GroupService } from 'client/app/services/group.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateGroupPageComponent } from 'client/app/group/create-group-page/create-group-page.component';
 
 @Component({
   selector: 'app-resort-detail',
@@ -24,7 +26,8 @@ export class ResortDetailComponent implements OnInit {
     public auth: AuthService,
     private userService: UserService,
     private groupService: GroupService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -49,5 +52,23 @@ export class ResortDetailComponent implements OnInit {
       console.log('# getGroupsForResortID', groups);
       this.groups = groups;
     });
+  }
+
+  onCreateGroupClicked(): void {
+    this.matDialog
+      .open(CreateGroupPageComponent, {
+        width: '800px',
+        data: {
+          resortID: this.resortID,
+        },
+      })
+      .afterClosed()
+      .subscribe((out) => {
+        this.getGroupsForResortID(this.resortID);
+        console.log(out);
+        if (out.success) {
+          console.log('success');
+        }
+      });
   }
 }

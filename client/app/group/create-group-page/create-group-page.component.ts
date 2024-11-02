@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'client/app/services/auth.service';
 import { GroupService } from 'client/app/services/group.service';
 import { Group } from 'client/app/shared/models/group.model';
@@ -10,8 +10,7 @@ import { ToastComponent } from 'client/app/shared/toast/toast.component';
   templateUrl: './create-group-page.component.html',
   styleUrl: './create-group-page.component.scss',
 })
-export class CreateGroupPageComponent implements OnInit {
-  resortID = '';
+export class CreateGroupPageComponent {
   createGroupName = '';
   groupDescription = '';
   startDate: Date = new Date();
@@ -22,23 +21,15 @@ export class CreateGroupPageComponent implements OnInit {
     public toast: ToastComponent,
     private authService: AuthService,
     private groupService: GroupService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    public dialogRef: MatDialogRef<CreateGroupPageComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { resortID: string }
   ) {}
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['resortID']) {
-        this.resortID = params['resortID'];
-      }
-    });
-  }
 
   createGroup() {
     this.groupService
       .addGroup({
         name: this.createGroupName,
-        resortID: this.resortID,
+        resortID: this.data.resortID,
         startDate: this.startDate,
         endDate: this.endDate,
         users: [this.authService.currentUser],
@@ -48,11 +39,12 @@ export class CreateGroupPageComponent implements OnInit {
       .subscribe({
         next: () => {
           this.toast.setMessage('Group Created Successfully', 'success');
-          this.router.navigate(['/resort', this.resortID]);
+          this.dialogRef.close('success');
         },
         error: (error) => {
           console.log(error);
           this.toast.setMessage('Something went wrong.', 'danger');
+          this.dialogRef.close('success');
         },
       });
   }
