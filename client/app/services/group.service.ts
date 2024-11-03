@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Group } from '../shared/models/group.model';
 
 @Injectable()
@@ -37,8 +36,23 @@ export class GroupService {
   }
 
   // Custom
-  getGroupsForResort(resortID: string): Observable<Group[]> {
-    return this.http.get<Group[]>(`/api/groups/resort/${resortID}`);
+  getGroupsForResort(
+    resortID: string,
+    startingFromDate: Date | undefined
+  ): Observable<Group[]> {
+    let params = {};
+
+    if (startingFromDate) {
+      params = {
+        startingFromDate: startingFromDate.toISOString(),
+      };
+    }
+
+    console.log('#query parmas', params);
+
+    return this.http.get<Group[]>(`/api/groups/resort/${resortID}`, {
+      params,
+    });
   }
 
   joinGroup(group: string, userID: string): Observable<Group> {

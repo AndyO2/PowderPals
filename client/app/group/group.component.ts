@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Group } from '../shared/models/group.model';
 import { GroupService } from '../services/group.service';
 import { User } from '../shared/models/user.model';
@@ -13,11 +13,15 @@ import { AuthService } from '../services/auth.service';
 export class GroupComponent implements OnInit {
   @Input() group: Group = new Group();
   @Input() user: User = new User();
-  @Input() users: User[] = [];
   // @Output() groupCreated: EventEmitter = new EventEmitter();
 
+  @Output() deleteGroupClicked: EventEmitter<string> =
+    new EventEmitter<string>();
+
+  numUsersInGroup = 0;
+
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private groupService: GroupService,
     public toast: ToastComponent
   ) {}
@@ -29,15 +33,17 @@ export class GroupComponent implements OnInit {
 
     if (!this.group._id) {
       this.loadGroup();
+    } else {
+      this.numUsersInGroup = this.group.members?.length || 0;
     }
-    console.log('#', this.group);
   }
 
   loadGroup(): void {
     this.groupService.getGroup(this.group).subscribe({
       next: (group) => {
         this.group = group;
-        console.log('loaded groups', group);
+        this.numUsersInGroup = group.members?.length || 0;
+        console.log('# numUsersInGroup', this.numUsersInGroup);
       },
       error: (error) => console.log(error),
     });
@@ -49,19 +55,28 @@ export class GroupComponent implements OnInit {
         .joinGroup(this.group._id || '', this.user._id || '')
         .subscribe({
           next: () => {
-            // this.groupCreated.emit('success');
-            this.users.push(this.auth.currentUser);
             this.loadGroup();
-            this.toast.setMessage('Successfully Joined Group', 'success');
+            this.toast.setMessage('Successfully Joined Group!', 'success');
           },
           error: (err) => {
-            console.log('#', err);
-            // this.groupCreated.emit('error');
-            this.toast.setMessage('Failed to join group.', 'danger');
+            this.toast.setMessage(err.error.message, 'danger');
           },
         });
     } else {
       console.log('# User does not have id');
     }
+  }
+
+  deleteGroup(group: any): void {
+    this.groupService.deleteGroup(group).subscribe({
+      next: () => {
+        console.log('# GROUP DELETED');
+        this.deleteGroupClicked.emit('success');
+      },
+      error: () => {
+        this.deleteGroupClicked.emit('failure');
+        console.log('# GROUP FAILED TO DELETE');
+      },
+    });
   }
 }

@@ -21,6 +21,8 @@ export class ResortDetailComponent implements OnInit {
 
   isLoading = true;
 
+  selectedDate: Date | null = null;
+
   constructor(
     public toast: ToastComponent,
     public auth: AuthService,
@@ -47,18 +49,19 @@ export class ResortDetailComponent implements OnInit {
   }
 
   getGroupsForResortID(resortID: string) {
-    this.groupService.getGroupsForResort(resortID).subscribe((groups) => {
-      console.log('# getGroupsForResortID', groups);
-      this.groups = groups;
-      this.isLoading = false;
-    });
+    this.groupService
+      .getGroupsForResort(resortID, undefined)
+      .subscribe((groups) => {
+        this.groups = groups;
+        this.isLoading = false;
+      });
   }
 
   onCreateGroupClicked(): void {
     this.matDialog
       .open(CreateGroupPageComponent, {
-        // height: 'calc(100% - 30px)',
-        // width: 'calc(100% - 30px)',
+        height: 'calc(100% - 30px)',
+        width: 'calc(100% - 30px)',
         maxWidth: '100vw',
         maxHeight: '100vh',
         panelClass: 'full-height-dialog',
@@ -70,6 +73,23 @@ export class ResortDetailComponent implements OnInit {
       .subscribe((out) => {
         this.getGroupsForResortID(this.resortID);
         console.log(out);
+      });
+  }
+
+  onDeleteGroupClicked(success: any): void {
+    console.log('#', success);
+    this.toast.setMessage('Successfully Deleted Group', 'success');
+    this.getGroupsForResortID(this.resortID);
+  }
+
+  onStartDateFilterChanged(val: Date): void {
+    console.log('filter changed', val);
+
+    this.groupService
+      .getGroupsForResort(this.resortID, val)
+      .subscribe((groups) => {
+        this.groups = groups;
+        this.isLoading = false;
       });
   }
 }

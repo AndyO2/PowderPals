@@ -1,7 +1,7 @@
-<div class="card d-flex align-items-center justify-content-between" style="flex-direction: row;">
+<!-- <div class="card d-flex align-items-center justify-content-between" style="flex-direction: row;">
     <div class="d-flex" style="flex-direction: column;">
         <h6>{{ group.name }}</h6>
-        <p>{{ group.startDate | date: 'MM/dd/yyyy' }} - {{ group.endDate | date: 'MM/dd/yyyy' }}</p>
+        <p>{{ group.startDate | date: 'EEEE, MMMM d' }} - {{ group.endDate | date: 'EEEE, MMMM d' }}</p>
 
         <div *ngFor="let user of group.users">
             <p>{{ user.username }}</p>
@@ -12,4 +12,27 @@
         <button type="button" class="btn btn-info" (click)="joinGroup()">Join Group</button>
         <button type="button" class="btn">TODO: Leave Group If User is In It</button>
     </div>
-</div>
+</div> -->
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            {{group.name}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{this.numUsersInGroup}} Attendees
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            {{group.description || 'testttttttttttttt'}}
+        </div>
+        <div>
+            {{ group.startDate | date: 'EEEE, MMMM d, y' }} - {{ group.endDate | date: 'EEEE, MMMM d, y' }}
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="joinGroup()">Join Group</button>
+        <button mat-raised-button *ngIf="auth.isAdmin" (click)="deleteGroup(group)">Delete Group</button>
+    </mat-card-actions>
+</mat-card>

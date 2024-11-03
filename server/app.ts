@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import morgan from 'morgan';
+import qs from 'qs';
 import { join as pathJoin } from 'path';
 
 import { connectToMongo } from './mongo';
@@ -8,6 +9,9 @@ import setRoutes from './routes';
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
+app.set('query parser', function (str: string) {
+  return qs.parse(str);
+});
 app.use('/', express.static(pathJoin(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

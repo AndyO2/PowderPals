@@ -7,7 +7,19 @@ class GroupCtrl extends BaseCtrl<IGroup> {
   getGroupsForResort = async (req: Request, res: Response) => {
     try {
       const { resortID } = req.params;
-      const groups = await this.model.find({ resortID });
+      // const queryParams = req.query;
+
+      const params = {
+        resortID,
+      } as any;
+
+      // const startDateFilter = queryParams.startingFromDate as string;
+      // if (startDateFilter) {
+      //   params.startDate = new Date(startDateFilter);
+      //   console.log('#', startDateFilter);
+      // }
+
+      const groups = await this.model.find(params);
       res.status(200).json(groups);
     } catch (error) {
       res.status(500).json(error);
@@ -22,7 +34,8 @@ class GroupCtrl extends BaseCtrl<IGroup> {
       // Check if the user is already a member
       const group = await this.model.findById(groupID);
       if (group && group.members.includes(userID)) {
-        res.status(400).json({ error: 'User is already a member' });
+        res.status(400).json({ message: 'User is already a member' });
+        return;
       }
 
       await this.model.findOneAndUpdate(

@@ -4,7 +4,7 @@ export class Group {
   _id?: string;
   name?: string;
   resort?: Resort;
-  users?: User[];
+  members?: User[];
   startDate?: Date;
   endDate?: Date;
   description?: string;
